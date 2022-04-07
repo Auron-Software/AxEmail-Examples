@@ -1,0 +1,13 @@
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\bin\Release\x86\SmtpSendMimeProgram.exe.config
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\bin\Release\x86\SmtpSendMimeProgram.exe
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\bin\Release\x86\SmtpSendMimeProgram.pdb
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\bin\Release\x86\SmtpSendMimeProgram.xml
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\bin\Release\x86\Interop.AxEmail.dll
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\Interop.AxEmail.dll
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\SmtpSendMimeProgram.vbproj.ResolveComReference.cache
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\SmtpSendMimeProgram.Resources.resources
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\SmtpSendMimeProgram.vbproj.GenerateResource.cache
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\SmtpSendMimeProgram.vbproj.CoreCompileInputs.cache
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\SmtpSendMimeProgram.exe
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\SmtpSendMimeProgram.xml
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\Smtp\SmtpMime\SendMIME\obj\x86\Release\SmtpSendMimeProgram.pdb

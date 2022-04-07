@@ -1,0 +1,9 @@
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\bin\Release\Any CPU\SmtpProgram.exe.config
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\bin\Release\Any CPU\SmtpProgram.exe
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\bin\Release\Any CPU\SmtpProgram.pdb
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\bin\Release\Any CPU\Interop.AxEmail.dll
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\obj\Release\Interop.AxEmail.dll
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\obj\Release\SmtpProgram.csproj.ResolveComReference.cache
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\obj\Release\SmtpProgram.csproj.CoreCompileInputs.cache
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\obj\Release\SmtpProgram.exe
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\Smtp\obj\Release\SmtpProgram.pdb

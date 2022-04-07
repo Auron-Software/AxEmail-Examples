@@ -1,0 +1,678 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+VisualBasicDemo
+</name>
+</assembly>
+<members>
+<member name="T:VisualBasicDemo.My.MyWebExtension">
+ <summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:VisualBasicDemo.My.MyWebExtension.Computer">
+ <summary>
+ Returns information about the host computer.
+ </summary>
+</member>
+<member name="P:VisualBasicDemo.My.MyWebExtension.User">
+ <summary>
+ Returns information for the current Web user.
+ </summary>
+</member>
+<member name="P:VisualBasicDemo.My.MyWebExtension.Request">
+ <summary>
+ Returns Request object.
+ </summary>
+</member>
+<member name="P:VisualBasicDemo.My.MyWebExtension.Response">
+ <summary>
+ Returns Response object.
+ </summary>
+</member>
+<member name="P:VisualBasicDemo.My.MyWebExtension.Log">
+ <summary>
+ Returns the Asp log object.
+ </summary>
+</member>
+<member name="T:VisualBasicDemo.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:VisualBasicDemo.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:VisualBasicDemo.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="F:VisualBasicDemo.frmimap._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lblInfo">
+<summary>
+lblInfo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lblHost">
+<summary>
+lblHost control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._txtHost">
+<summary>
+txtHost control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._cbSecure">
+<summary>
+cbSecure control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lblAccount">
+<summary>
+lblAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._txtAccount">
+<summary>
+txtAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lblPassword">
+<summary>
+lblPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._txtPassword">
+<summary>
+txtPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._btnListMessages">
+<summary>
+btnListMessages control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lblMessagesReceived">
+<summary>
+lblMessagesReceived control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lvMessages">
+<summary>
+lvMessages control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lblResult">
+<summary>
+lblResult control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._txtResult">
+<summary>
+txtResult control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._lblLogFile">
+<summary>
+lblLogFile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmimap._txtLogfile">
+<summary>
+txtLogfile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lblInfo">
+<summary>
+lblInfo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lblHost">
+<summary>
+lblHost control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._txtHost">
+<summary>
+txtHost control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._cbSecure">
+<summary>
+cbSecure control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lblAccount">
+<summary>
+lblAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._txtAccount">
+<summary>
+txtAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lblPassword">
+<summary>
+lblPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._txtPassword">
+<summary>
+txtPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._btnListMessages">
+<summary>
+btnListMessages control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lblMessagesReceived">
+<summary>
+lblMessagesReceived control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lvMessages">
+<summary>
+lvMessages control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lblResult">
+<summary>
+lblResult control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._txtResult">
+<summary>
+txtResult control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._lblLogFile">
+<summary>
+lblLogFile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmpop3._txtLogfile">
+<summary>
+txtLogfile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblInfo">
+<summary>
+lblInfo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblServer">
+<summary>
+lblServer control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtServer">
+<summary>
+txtServer control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._cbSecure">
+<summary>
+cbSecure control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblAccount">
+<summary>
+lblAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtAccount">
+<summary>
+txtAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblPassword">
+<summary>
+lblPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtPassword">
+<summary>
+txtPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblSenderName">
+<summary>
+lblSenderName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtFromName">
+<summary>
+txtFromName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblSenderEmail">
+<summary>
+lblSenderEmail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtFromAddress">
+<summary>
+txtFromAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblTo">
+<summary>
+lblTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtToAddress">
+<summary>
+txtToAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblCc">
+<summary>
+lblCc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtCcAddress">
+<summary>
+txtCcAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblBcc">
+<summary>
+lblBcc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtBccAddress">
+<summary>
+txtBccAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblSubject">
+<summary>
+lblSubject control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtSubject">
+<summary>
+txtSubject control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblPlainBody">
+<summary>
+lblPlainBody control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtPlainBody">
+<summary>
+txtPlainBody control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblHtmlBody">
+<summary>
+lblHtmlBody control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtHtmlBody">
+<summary>
+txtHtmlBody control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblCharSet">
+<summary>
+lblCharSet control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._ddlEncoding">
+<summary>
+ddlEncoding control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblPriority">
+<summary>
+lblPriority control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._ddlPriority">
+<summary>
+ddlPriority control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._btnSend">
+<summary>
+btnSend control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblResult">
+<summary>
+lblResult control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtResult">
+<summary>
+txtResult control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblLastSmtpResponse">
+<summary>
+lblLastSmtpResponse control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtLastSmtpResponse">
+<summary>
+txtLastSmtpResponse control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._lblLogFile">
+<summary>
+lblLogFile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.frmsmtp._txtLogfile">
+<summary>
+txtLogfile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:VisualBasicDemo.Layout._container">
+<summary>
+container control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

@@ -1,0 +1,13 @@
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\bin\VisualBasicDemo.dll
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\bin\VisualBasicDemo.pdb
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\bin\VisualBasicDemo.xml
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\bin\Interop.AxEmail.dll
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.vbprojAssemblyReference.cache
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\Interop.AxEmail.dll
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.vbproj.ResolveComReference.cache
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.Resources.resources
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.vbproj.GenerateResource.cache
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.vbproj.CoreCompileInputs.cache
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.dll
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.xml
+G:\AxEmail\Samples\ASP.NET\VisualBasicDemo\obj\x64\Release\VisualBasicDemo.pdb

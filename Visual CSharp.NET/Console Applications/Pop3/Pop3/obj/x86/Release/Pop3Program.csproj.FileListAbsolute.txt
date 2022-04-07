@@ -1,0 +1,10 @@
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\bin\Release\x86\Pop3Program.exe.config
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\bin\Release\x86\Pop3Program.exe
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\bin\Release\x86\Pop3Program.pdb
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\bin\Release\x86\Interop.AxEmail.dll
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\obj\x86\Release\Pop3Program.csprojAssemblyReference.cache
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\obj\x86\Release\Interop.AxEmail.dll
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\obj\x86\Release\Pop3Program.csproj.ResolveComReference.cache
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\obj\x86\Release\Pop3Program.csproj.CoreCompileInputs.cache
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\obj\x86\Release\Pop3Program.exe
+G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Pop3\Pop3\obj\x86\Release\Pop3Program.pdb

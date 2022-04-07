@@ -1,0 +1,13 @@
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\bin\Release\OAuth2.exe.config
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\bin\Release\OAuth2.exe
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\bin\Release\OAuth2.pdb
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\bin\Release\OAuth2.xml
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2Program.vbprojAssemblyReference.cache
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\Interop.AxEmail.dll
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2Program.vbproj.ResolveComReference.cache
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2.Resources.resources
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2Program.vbproj.GenerateResource.cache
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2Program.vbproj.CoreCompileInputs.cache
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2.exe
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2.xml
+G:\AxEmail\Samples\Visual Basic.NET\Console Applications\OAuth2\obj\Release\OAuth2.pdb
