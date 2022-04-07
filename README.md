@@ -15,6 +15,8 @@ You can find detailed product information on the Auron Software [product page](h
 
 Download the Auron E-mail Component on the [download page](https://www.auronsoftware.com/download).
 
+Or install the Auron E-mail Comonent directly from [nuget](https://www.nuget.org/packages/AxEmail/).
+
 # Examples
 This repository contains a large number of working examples on how to use the Auron E-mail Component in:
  * ASP Classic / ASP.Net
