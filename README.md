@@ -8,7 +8,7 @@ The Auron e-mail component supports:
  * Sending and receiving using SMTP, POP3 and IMAP
  * Full mail box management with IMAP
  * Support for OAuth2 authentication
- * Full supports for SSL/TLS and STARTTLS
+ * Full support for SSL/TLS and STARTTLS
  * Load and save MIME files
 
 You can find detailed product information on the Auron Software [product page](https://www.auronsoftware.com/products/email-component/).
