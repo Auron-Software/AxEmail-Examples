@@ -1,7 +1,7 @@
 ' ********************************************************************
 '
 ' Auron Email Component
-' OAuth2 authorization using the authorization code flow
+' OAuth2 Refresh bearer token
 ' (c) Copyright Auron Software - www.auronsoftware.com
 '
 ' ********************************************************************
@@ -25,30 +25,19 @@ Set fso = CreateObject("Scripting.FileSystemObject")
 objOAuth2.LogFile = fso.GetSpecialFolder(2) & "\OAuth2.log"
 WScript.Echo "Log file: " & objOAuth2.LogFile
 
-' This example works with Google to gain access to a users e-mail using IMAP, SMTP and POP3.
-' To use a different service please update the scope, device code url and token exchange url accordingly
-objOAuth2.Flow = objConstants.OAUTH2_FLOW_AUTHCODE
-objOAuth2.ClientID = "" ' Enter your client id (Create an application in the google cloud console)
-objOAuth2.ClientSecret = "" ' Enter your client secret
-objOAuth2.RedirectUrl = "http://localhost:7999/oauth2test/"   ' Must be the URL used when creating your google application
-objOAuth2.Scope = "https://mail.google.com/"
-objOAuth2.AuthCodeUrl = "https://accounts.google.com/o/oauth2/v2/auth"
-objOAuth2.TokenExchangeUrl = "https://oauth2.googleapis.com/token"
+' This example works with Microsoft to refresh an existing bearer token.
+'
+objOAuth2.ClientID = "" ' Enter your client id (Create an application in the Azure console)
+objOAuth2.ClientSecret = "" ' Leave empty when using Microsoft device code flow
+objOAuth2.TokenExchangeUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token"
 
-' Test if the client ID is set
-If objOAuth2.ClientID = "" Then
-  WScript.Echo
-  WScript.Echo "NOTE: Please open this source file to verify your client id and other OAuth2 parameters."
-  WScript.Quit 1
-End If
+objOAuth2.BearerToken = "" ' Set to the bearer token you've received during authorization
+objOAuth2.RefreshToken = "" ' Set to the refres token you've received during authorization
 
-' Collect device and usercode and show the login page
-objOAuth2.Login
-WScript.Echo "Login result " & objOAuth2.LastError & _
-  ": " & objOAuth2.GetErrorDescription(objOAuth2.LastError)
-
-' Wait for the user to login
-objOAuth2.WaitForTokens(60000)
+' Call RefreshBearerToken token to refresh your bearer token. Call it after the bearer timeout has expired
+' and before using the bearer token for your next login. This call may also renew your refresh token.
+' 
+objOAuth2.RefreshBearerToken
 WScript.Echo "WaitForTokens result " & objOAuth2.LastError & _
   ": " & objOAuth2.GetErrorDescription(objOAuth2.LastError)
 

@@ -9,8 +9,7 @@
 #define AXEMAIL_SMTP_AUTH_AUTO 0					  // Auto detect ( default )
 #define AXEMAIL_SMTP_AUTH_PLAIN 1					  // AUTH-PLAIN
 #define AXEMAIL_SMTP_AUTH_LOGIN 2					  // AUTH-LOGIN
-#define AXEMAIL_SMTP_AUTH_MD5CRAM 3					// AUTH-CRAM-MD5
-#define AXEMAIL_SMTP_AUTH_OAUTH2 4          // AUTH XOAUTH2
+#define AXEMAIL_SMTP_AUTH_MD5CRAM 3					  // AUTH-CRAM-MD5
 
 #define AXEMAIL_SMTP_SERVER_PORT 25
 #define AXEMAIL_SMTP_SERVER_PORT_SSL 465
@@ -21,11 +20,6 @@
 #define AXEMAIL_POP3_AUTH_AUTO 0			// Auto detect ( default )
 #define AXEMAIL_POP3_AUTH_PLAIN 1			// Plain text login
 #define AXEMAIL_POP3_AUTH_APOP 2			// APOP authentication
-#define AXEMAIL_POP3_AUTH_OAUTH2 3			// OAUTH2 authentication
-
-#define AUOA2_FLOW_UNDEFINED 0
-#define AUOA2_FLOW_AUTHCODE 1
-#define AUOA2_FLOW_DEVICECODE 2
 
 // See http://msdn.microsoft.com/en-us/library/dd317756%28v=vs.85%29.aspx
 #define AXEMAIL_MESSAGEENCODING_DEFAULT			    0			// Default Encoding
@@ -61,7 +55,6 @@
 #define AXIMAP_AUTH_AUTO                    0
 #define AXIMAP_AUTH_LOGIN                   1
 #define AXIMAP_AUTH_PLAIN                   2
-#define AXIMAP_AUTH_OAUTH2                  3
 
 // search keys
 #define AXIMAP_SK_ALL                       L"ALL"                 // All messages in the mailbox; the default initial key for ANDing.

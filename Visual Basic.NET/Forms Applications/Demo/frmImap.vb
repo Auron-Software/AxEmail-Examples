@@ -23,7 +23,7 @@
     cbxSecurity.Items.Add("Not Secure")
     cbxSecurity.Items.Add("SSL/TLS")
     cbxSecurity.Items.Add("XOAUTH2")
-    cbxSecurity.SelectedIndex = IDX_NOTSECURE
+    cbxSecurity.SelectedIndex = IDX_SSLTLS
 
     ' setup email flags
     Dim dctMailFlags = New Dictionary(Of String, String)
@@ -136,10 +136,14 @@
   Private Function RefreshOAuth2BearerToken() As Boolean
     objOAuth2.RefreshBearerToken()
     UpdateResult()
+    If objOAuth2.LastError = 0 Then
+      dtBearerOrigin = DateTime.Now
+      sBearerToken = objOAuth2.BearerToken
+    End If
     Return objOAuth2.LastError = 0
   End Function
 
-  Private Sub btnConnect_Click(ByVal sender As Object, ByVal e As EventArgs)
+  Private Sub btnConnect_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnConnect.Click
     objImap.LogFile = txtLogfile.Text
     objImap.HostPort = Int32.Parse(txtPort.Text)
     Dim nSecIdx As Integer = cbxSecurity.SelectedIndex
@@ -175,7 +179,7 @@
     Me.UpdateControls()
   End Sub
 
-  Private Sub btnViewLog_Click(ByVal sender As Object, ByVal e As EventArgs)
+  Private Sub btnViewLog_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewLog.Click
     If System.IO.File.Exists(txtLogfile.Text) Then
       System.Diagnostics.Process.Start(txtLogfile.Text)
     End If

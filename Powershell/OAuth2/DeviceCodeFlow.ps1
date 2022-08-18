@@ -1,7 +1,7 @@
 # ********************************************************************
 #
 # Auron Email Component
-# OAuth2 authrization using the device code flow
+# OAuth2 authorization using the device code flow
 # (c) Copyright Auron Software - www.auronsoftware.com
 #
 # ********************************************************************
@@ -37,7 +37,7 @@ write-host ""
 
 # To use a different service please update the scope, device code url and token exchange url accordingly
 $objOAuth2.Flow = $objConstants.OAUTH2_FLOW_DEVICECODE
-$objOAuth2.ClientID = "8533e03f-4ea5-4448-bdb5-4c60ea323aae" # Enter your client id (Create an application in the Azure console)
+$objOAuth2.ClientID = "" # Enter your client id (Create an application in the Azure console)
 $objOAuth2.ClientSecret = "" # Leave empty when using Microsoft device code flow
 $objOAuth2.Scope = "offline_access https://outlook.office.com/IMAP.AccessAsUser.All https://outlook.office.com/SMTP.Send https://outlook.office.com/POP.AccessAsUser.All"
 $objOAuth2.DeviceCodeUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/devicecode"

@@ -1,7 +1,7 @@
 # ********************************************************************
 #
 # Auron Email Component
-# OAuth2 authorization using the authorization code flow
+# OAuth2 Refresh bearer token
 # (c) Copyright Auron Software - www.auronsoftware.com
 #
 # ********************************************************************
@@ -36,28 +36,14 @@ write-host $objOAuth2.Logfile
 write-host ""
 
 # To use a different service please update the scope, device code url and token exchange url accordingly
-$objOAuth2.Flow = $objConstants.OAUTH2_FLOW_AUTHCODE
-$objOAuth2.ClientID = "" # Enter your client id (Create an application in the google cloud console)
+$objOAuth2.ClientID = "" # Enter your client id (Create an application in the Azure console)
 $objOAuth2.ClientSecret = "" # Leave empty when using Microsoft device code flow
-$objOAuth2.RedirectUrl = "http://localhost:7999/oauth2test/"   # Must be the URL used when creating your google application
-$objOAuth2.Scope = "https://mail.google.com/"
-$objOAuth2.AuthCodeUrl = "https://accounts.google.com/o/oauth2/v2/auth"
-$objOAuth2.TokenExchangeUrl = "https://oauth2.googleapis.com/token"
+$objOAuth2.TokenExchangeUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token"
 
-# Test if the client ID is set
-If ($objOAuth2.ClientID -eq "")
-{
-  write-host
-  write-host "NOTE: Please open this source file to verify your client id and other OAuth2 parameters."
-  Exit
-}
+$objOAuth2.BearerToken = "" # Set to the bearer token you've received during authorization
+$objOAuth2.RefreshToken = "" # Set to the refres token you've received during authorization
 
-$objOAuth2.Login()
-$strResult = "Login, result: " + $objOAuth2.LastError + " (" + $objOAuth2.GetErrorDescription($objOAuth2.LastError) + ")"
-write-host $strResult 
-
-# Wait for the user to login; specify a max time in milliseconds to wait for the user to finish
-$objOAuth2.WaitForTokens(60000) 
+$objOAuth2.RefreshBearerToken()
 $strResult = "WaitForTokens, result: " + $objOAuth2.LastError + " (" + $objOAuth2.GetErrorDescription($objOAuth2.LastError) + ")"
 write-host $strResult 
 

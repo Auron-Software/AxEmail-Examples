@@ -157,6 +157,11 @@ namespace Demo
     {
       objOAuth2.RefreshBearerToken();
       SetResult(objOAuth2.LastError);
+      if (objOAuth2.LastError == 0)
+      {
+        dtBearerOrigin = DateTime.Now;
+        sBearerToken = objOAuth2.BearerToken;
+      }
       return objOAuth2.LastError == 0;
     }
 

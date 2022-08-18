@@ -9,6 +9,36 @@ namespace OAuth2
 {
   class OAuth2Program
   {
+    // You'll need this function to refresh a bearer token when it's expired
+    // Call it right after expiration and before checking your email. This way 
+    // the user doesn't have to login again.
+    static void RefreshBearerToken(ref string sBearer, ref string sRefresh, out int nNewTimeoutSec)
+    {
+      nNewTimeoutSec = 0;
+      AxEmail.OAuth2 objOAuth2 = new AxEmail.OAuth2();
+
+      objOAuth2.ClientID = "";     // TODO: Input your client ID from the google cloud portal
+      objOAuth2.ClientSecret = ""; // TODO: Input your client secret from the google cloud portal
+      objOAuth2.TokenExchangeUrl = "https://oauth2.googleapis.com/token";
+
+      objOAuth2.BearerToken = sBearer;
+      objOAuth2.RefreshToken = sRefresh;
+
+      objOAuth2.RefreshBearerToken();
+      Console.WriteLine("RefreshBearerToken, result: {0} ({1})",
+        objOAuth2.LastError, objOAuth2.GetErrorDescription(objOAuth2.LastError));
+      if (objOAuth2.LastError != 0) return;
+
+      sBearer = objOAuth2.BearerToken;
+      sRefresh = objOAuth2.RefreshToken;
+      nNewTimeoutSec = objOAuth2.BearerExpInSeconds;
+
+      Console.WriteLine();
+      Console.WriteLine("Bearer token: {0}", objOAuth2.BearerToken);
+      Console.WriteLine("Refresh token: {0}", objOAuth2.RefreshToken);
+      Console.WriteLine("Bearer token timeout: {0} seconds", objOAuth2.BearerExpInSeconds);
+    }
+
     static void Main(string[] args)
     {
       AxEmail.OAuth2 objOAuth2 = new AxEmail.OAuth2();
@@ -19,7 +49,7 @@ namespace OAuth2
       // Alternatively, the LicenseKey property can be set automatically. This requires the license key to be stored in the registry.
       // For details, see manual, chapter "Product Activation".
       /*
-      objPop3.LicenseKey = "XXXXX-XXXXX-XXXXX";
+      objOAuth2.LicenseKey = "XXXXX-XXXXX-XXXXX";
       */
 
       // Component info
@@ -30,7 +60,7 @@ namespace OAuth2
       objOAuth2.LogFile = Path.GetTempPath() + "OAuth2.log";
       Console.WriteLine("Log file used: {0}\n", objOAuth2.LogFile);
 
-      // setup oauth parameters
+      // Setup oauth parameters
       objOAuth2.Flow = objConstants.OAUTH2_FLOW_AUTHCODE;
       objOAuth2.ClientID = "";     // TODO: Input your client ID from the google cloud portal
       objOAuth2.ClientSecret = ""; // TODO: Input your client secret from the google cloud portal
@@ -46,13 +76,13 @@ namespace OAuth2
         return;
       }
 
-      // show the login browser window or user code browser window if device code flow is selected
+      // Show the login browser window or user code browser window if device code flow is selected
       objOAuth2.Login();
       Console.WriteLine("Login, result: {0} ({1})", 
         objOAuth2.LastError, objOAuth2.GetErrorDescription(objOAuth2.LastError));
       if (objOAuth2.LastError != 0) return;
 
-      // wait for the token exchange to happen
+      // Wait for the token exchange to happen
       objOAuth2.WaitForTokens(90000);
       Console.WriteLine("WaitForTokens, result: {0} ({1})",
         objOAuth2.LastError, objOAuth2.GetErrorDescription(objOAuth2.LastError));

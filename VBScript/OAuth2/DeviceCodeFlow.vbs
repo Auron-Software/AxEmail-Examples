@@ -1,7 +1,7 @@
 ' ********************************************************************
 '
 ' Auron Email Component
-' OAuth2 authrization using the device code flow
+' OAuth2 authorization using the device code flow
 ' (c) Copyright Auron Software - www.auronsoftware.com
 '
 ' ********************************************************************

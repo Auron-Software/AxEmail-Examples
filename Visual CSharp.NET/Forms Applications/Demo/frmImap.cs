@@ -35,7 +35,7 @@ namespace Demo
       cbxSecurity.Items.Add("Not Secure");
       cbxSecurity.Items.Add("SSL/TLS");
       cbxSecurity.Items.Add("XOAUTH2");
-      cbxSecurity.SelectedIndex = IDX_NOTSECURE;
+      cbxSecurity.SelectedIndex = IDX_SSLTLS;
 
       // setup email flags
       var dctMailFlags = new Dictionary<String, String>();
@@ -161,6 +161,11 @@ namespace Demo
     {
       objOAuth2.RefreshBearerToken();
       UpdateResult();
+      if (objOAuth2.LastError == 0)
+      {
+        dtBearerOrigin = DateTime.Now;
+        sBearerToken = objOAuth2.BearerToken;
+      }
       return objOAuth2.LastError == 0;
     }
 

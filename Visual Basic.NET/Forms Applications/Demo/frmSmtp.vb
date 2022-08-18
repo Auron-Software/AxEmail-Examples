@@ -121,6 +121,10 @@ Public Class frmSmtp
   Private Function RefreshOAuth2BearerToken() As Boolean
     objOAuth2.RefreshBearerToken()
     SetResult(objOAuth2.LastError)
+    If objOAuth2.LastError = 0 Then
+      dtBearerOrigin = DateTime.Now
+      sBearerToken = objOAuth2.BearerToken
+    End If
     Return objOAuth2.LastError = 0
   End Function
 
