@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDemo));
       this.btnLicensing = new System.Windows.Forms.Button();
       this.Label7 = new System.Windows.Forms.Label();
-      this.llblUrlSmsToolkit = new System.Windows.Forms.LinkLabel();
+      this.llblUrlEmailToolkit = new System.Windows.Forms.LinkLabel();
       this.Label6 = new System.Windows.Forms.Label();
       this.groupBox7 = new System.Windows.Forms.GroupBox();
       this.label10 = new System.Windows.Forms.Label();
@@ -44,15 +45,18 @@
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.label1 = new System.Windows.Forms.Label();
       this.btnImap = new System.Windows.Forms.Button();
+      this.btnMoreExamples = new System.Windows.Forms.Button();
+      this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.groupBox7.SuspendLayout();
       this.groupBox8.SuspendLayout();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.SuspendLayout();
       // 
       // btnLicensing
       // 
-      this.btnLicensing.Location = new System.Drawing.Point(652, 278);
+      this.btnLicensing.Location = new System.Drawing.Point(652, 365);
       this.btnLicensing.Name = "btnLicensing";
       this.btnLicensing.Size = new System.Drawing.Size(152, 23);
       this.btnLicensing.TabIndex = 10;
@@ -62,26 +66,26 @@
       // Label7
       // 
       this.Label7.AutoSize = true;
-      this.Label7.Location = new System.Drawing.Point(15, 278);
+      this.Label7.Location = new System.Drawing.Point(11, 375);
       this.Label7.Name = "Label7";
       this.Label7.Size = new System.Drawing.Size(437, 13);
       this.Label7.TabIndex = 48;
       this.Label7.Text = "Source code for this application is located in the \'Samples\' folder of the instal" +
     "lation directory.";
       // 
-      // llblUrlSmsToolkit
+      // llblUrlEmailToolkit
       // 
-      this.llblUrlSmsToolkit.Location = new System.Drawing.Point(147, 258);
-      this.llblUrlSmsToolkit.Name = "llblUrlSmsToolkit";
-      this.llblUrlSmsToolkit.Size = new System.Drawing.Size(192, 16);
-      this.llblUrlSmsToolkit.TabIndex = 9;
-      this.llblUrlSmsToolkit.TabStop = true;
-      this.llblUrlSmsToolkit.Text = "Auron Email Component";
-      this.llblUrlSmsToolkit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblUrlSmsToolkit_LinkClicked);
+      this.llblUrlEmailToolkit.Location = new System.Drawing.Point(146, 357);
+      this.llblUrlEmailToolkit.Name = "llblUrlEmailToolkit";
+      this.llblUrlEmailToolkit.Size = new System.Drawing.Size(147, 16);
+      this.llblUrlEmailToolkit.TabIndex = 9;
+      this.llblUrlEmailToolkit.TabStop = true;
+      this.llblUrlEmailToolkit.Text = "Auron Email Component";
+      this.llblUrlEmailToolkit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblUrlEmailToolkit_LinkClicked);
       // 
       // Label6
       // 
-      this.Label6.Location = new System.Drawing.Point(15, 258);
+      this.Label6.Location = new System.Drawing.Point(11, 357);
       this.Label6.Name = "Label6";
       this.Label6.Size = new System.Drawing.Size(144, 16);
       this.Label6.TabIndex = 46;
@@ -206,20 +210,43 @@
       this.btnImap.UseVisualStyleBackColor = true;
       this.btnImap.Click += new System.EventHandler(this.btnImap_Click);
       // 
+      // btnMoreExamples
+      // 
+      this.btnMoreExamples.Location = new System.Drawing.Point(494, 365);
+      this.btnMoreExamples.Name = "btnMoreExamples";
+      this.btnMoreExamples.Size = new System.Drawing.Size(152, 23);
+      this.btnMoreExamples.TabIndex = 54;
+      this.btnMoreExamples.Text = "&More Examples...";
+      this.btnMoreExamples.Click += new System.EventHandler(this.btnMoreExamples_Click);
+      // 
+      // pictureBox1
+      // 
+      this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+      this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+      this.pictureBox1.Location = new System.Drawing.Point(14, 250);
+      this.pictureBox1.Name = "pictureBox1";
+      this.pictureBox1.Size = new System.Drawing.Size(398, 77);
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+      this.pictureBox1.TabIndex = 55;
+      this.pictureBox1.TabStop = false;
+      // 
       // frmDemo
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(815, 310);
+      this.ClientSize = new System.Drawing.Size(815, 401);
+      this.Controls.Add(this.pictureBox1);
+      this.Controls.Add(this.btnMoreExamples);
       this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.groupBox9);
       this.Controls.Add(this.groupBox8);
       this.Controls.Add(this.groupBox7);
       this.Controls.Add(this.btnLicensing);
       this.Controls.Add(this.Label7);
-      this.Controls.Add(this.llblUrlSmsToolkit);
+      this.Controls.Add(this.llblUrlEmailToolkit);
       this.Controls.Add(this.Label6);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "frmDemo";
@@ -228,6 +255,7 @@
       this.groupBox8.ResumeLayout(false);
       this.groupBox9.ResumeLayout(false);
       this.groupBox1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -237,7 +265,7 @@
 
         internal System.Windows.Forms.Button btnLicensing;
         internal System.Windows.Forms.Label Label7;
-        internal System.Windows.Forms.LinkLabel llblUrlSmsToolkit;
+        internal System.Windows.Forms.LinkLabel llblUrlEmailToolkit;
         internal System.Windows.Forms.Label Label6;
         internal System.Windows.Forms.GroupBox groupBox7;
         internal System.Windows.Forms.Label label10;
@@ -251,6 +279,8 @@
     internal System.Windows.Forms.GroupBox groupBox1;
     internal System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btnImap;
+    internal System.Windows.Forms.Button btnMoreExamples;
+    private System.Windows.Forms.PictureBox pictureBox1;
   }
 }
 

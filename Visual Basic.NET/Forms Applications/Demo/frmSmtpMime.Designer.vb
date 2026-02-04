@@ -22,34 +22,35 @@ Partial Class frmSmtpMime
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtPort = New System.Windows.Forms.TextBox
-        Me.txtLastSmtpResponse = New System.Windows.Forms.TextBox
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.label19 = New System.Windows.Forms.Label
-        Me.cbSecure = New System.Windows.Forms.CheckBox
-        Me.txtPassword = New System.Windows.Forms.TextBox
-        Me.txtAccount = New System.Windows.Forms.TextBox
-        Me.label11 = New System.Windows.Forms.Label
-        Me.label9 = New System.Windows.Forms.Label
-        Me.cbAuthentication = New System.Windows.Forms.CheckBox
-        Me.txtHost = New System.Windows.Forms.TextBox
-        Me.label5 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.btnViewLog = New System.Windows.Forms.Button
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.btnCreateMIME = New System.Windows.Forms.Button
-        Me.txtMIMEContents = New System.Windows.Forms.TextBox
-        Me.label4 = New System.Windows.Forms.Label
-        Me.btnLoadMIME = New System.Windows.Forms.Button
-        Me.txtMIMEFile = New System.Windows.Forms.TextBox
-        Me.label15 = New System.Windows.Forms.Label
-        Me.btnSend = New System.Windows.Forms.Button
-        Me.txtLogfile = New System.Windows.Forms.TextBox
-        Me.txtResult = New System.Windows.Forms.TextBox
-        Me.label13 = New System.Windows.Forms.Label
-        Me.label14 = New System.Windows.Forms.Label
-        Me.groupBox3 = New System.Windows.Forms.GroupBox
-        Me.lblInfo = New System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSmtpMime))
+        Me.txtPort = New System.Windows.Forms.TextBox()
+        Me.txtLastSmtpResponse = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.label19 = New System.Windows.Forms.Label()
+        Me.cbSecure = New System.Windows.Forms.CheckBox()
+        Me.txtPassword = New System.Windows.Forms.TextBox()
+        Me.txtAccount = New System.Windows.Forms.TextBox()
+        Me.label11 = New System.Windows.Forms.Label()
+        Me.label9 = New System.Windows.Forms.Label()
+        Me.cbAuthentication = New System.Windows.Forms.CheckBox()
+        Me.txtHost = New System.Windows.Forms.TextBox()
+        Me.label5 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.btnViewLog = New System.Windows.Forms.Button()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.btnCreateMIME = New System.Windows.Forms.Button()
+        Me.txtMIMEContents = New System.Windows.Forms.TextBox()
+        Me.label4 = New System.Windows.Forms.Label()
+        Me.btnLoadMIME = New System.Windows.Forms.Button()
+        Me.txtMIMEFile = New System.Windows.Forms.TextBox()
+        Me.label15 = New System.Windows.Forms.Label()
+        Me.btnSend = New System.Windows.Forms.Button()
+        Me.txtLogfile = New System.Windows.Forms.TextBox()
+        Me.txtResult = New System.Windows.Forms.TextBox()
+        Me.label13 = New System.Windows.Forms.Label()
+        Me.label14 = New System.Windows.Forms.Label()
+        Me.groupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lblInfo = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.groupBox3.SuspendLayout()
@@ -319,6 +320,7 @@ Partial Class frmSmtpMime
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.groupBox3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmSmtpMime"

@@ -6,8 +6,10 @@
 //-----------------------------------------------------------------------
 namespace Demo
 {
+  using Microsoft.Win32;
   using System;
   using System.Diagnostics;
+  using System.IO;
   using System.Windows.Forms;
 
   public partial class frmDemo : Form
@@ -18,17 +20,50 @@ namespace Demo
     private frmImap objFrmImap;
     private frmSmtpMime objFrmSmtpMime;
 
+    private string sExamplesRoot;
+
+    private string GetInstallRoot()
+    {
+      const string subKey = @"SOFTWARE\Auron\Email Component";
+
+      try
+      {
+        using (RegistryKey key = Registry.LocalMachine.OpenSubKey(subKey))
+        {
+          if (key != null)
+          {
+            object value = key.GetValue("InstallRoot");
+            if (value != null)
+            {
+              return value.ToString();
+            }
+          }
+        }
+      }
+      catch
+      {
+        // do nothing..
+      }
+
+      return "";
+    }
+
     public frmDemo()
     {
+      var objSmtp = new AxEmail.Smtp();
+
       InitializeComponent();
       objFrmLicensing = new frmLicensing();
       objFrmSmtp = new frmSmtp();
       objFrmPop3 = new frmPop3();
       objFrmImap = new frmImap();
       objFrmSmtpMime = new frmSmtpMime();
+     
+      Text = "Auron Email Component - C# .NET Demo - " + objSmtp.Build;
+      sExamplesRoot = Path.Combine(new string[] { GetInstallRoot(), "Samples" });
     }
 
-    private void llblUrlSmsToolkit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    private void llblUrlEmailToolkit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
       Process.Start("https://www.auronsoftware.com/products/email-component/");
     }
@@ -56,6 +91,16 @@ namespace Demo
     private void btnImap_Click(object sender, EventArgs e)
     {
       objFrmImap.ShowDialog();
+    }
+
+    private void btnMoreExamples_Click(object sender, EventArgs e)
+    {
+      var startInfo = new ProcessStartInfo
+      {
+        FileName = sExamplesRoot,
+        UseShellExecute = true  // Important for .NET Core/.NET 5+ (default is false in newer .NET)
+      };
+      Process.Start(startInfo);
     }
   }
 }

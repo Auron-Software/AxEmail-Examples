@@ -22,6 +22,7 @@ Partial Class frmPop3
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPop3))
         Me.Label10 = New System.Windows.Forms.Label()
         Me.columnFrom = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label9 = New System.Windows.Forms.Label()
@@ -39,6 +40,9 @@ Partial Class frmPop3
         Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colSize = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnOAuth = New System.Windows.Forms.Button()
+        Me.cbxSecurity = New System.Windows.Forms.ComboBox()
+        Me.label19 = New System.Windows.Forms.Label()
         Me.btnDisconnect = New System.Windows.Forms.Button()
         Me.btnConnect = New System.Windows.Forms.Button()
         Me.txtPassword = New System.Windows.Forms.TextBox()
@@ -64,9 +68,6 @@ Partial Class frmPop3
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.lblInfo = New System.Windows.Forms.Label()
-        Me.btnOAuth = New System.Windows.Forms.Button()
-        Me.cbxSecurity = New System.Windows.Forms.ComboBox()
-        Me.label19 = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -232,6 +233,32 @@ Partial Class frmPop3
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "POP3 Server"
+        '
+        'btnOAuth
+        '
+        Me.btnOAuth.Location = New System.Drawing.Point(370, 45)
+        Me.btnOAuth.Name = "btnOAuth"
+        Me.btnOAuth.Size = New System.Drawing.Size(164, 23)
+        Me.btnOAuth.TabIndex = 16
+        Me.btnOAuth.Text = "OAuth Settings..."
+        Me.btnOAuth.UseVisualStyleBackColor = True
+        '
+        'cbxSecurity
+        '
+        Me.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxSecurity.FormattingEnabled = True
+        Me.cbxSecurity.Location = New System.Drawing.Point(370, 18)
+        Me.cbxSecurity.Name = "cbxSecurity"
+        Me.cbxSecurity.Size = New System.Drawing.Size(164, 21)
+        Me.cbxSecurity.TabIndex = 15
+        '
+        'label19
+        '
+        Me.label19.Location = New System.Drawing.Point(311, 22)
+        Me.label19.Name = "label19"
+        Me.label19.Size = New System.Drawing.Size(49, 18)
+        Me.label19.TabIndex = 14
+        Me.label19.Text = "&Security:"
         '
         'btnDisconnect
         '
@@ -452,32 +479,6 @@ Partial Class frmPop3
         Me.lblInfo.TabIndex = 4
         Me.lblInfo.Text = "[Info]"
         '
-        'btnOAuth
-        '
-        Me.btnOAuth.Location = New System.Drawing.Point(370, 45)
-        Me.btnOAuth.Name = "btnOAuth"
-        Me.btnOAuth.Size = New System.Drawing.Size(164, 23)
-        Me.btnOAuth.TabIndex = 16
-        Me.btnOAuth.Text = "OAuth Settings..."
-        Me.btnOAuth.UseVisualStyleBackColor = True
-        '
-        'cbxSecurity
-        '
-        Me.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxSecurity.FormattingEnabled = True
-        Me.cbxSecurity.Location = New System.Drawing.Point(370, 18)
-        Me.cbxSecurity.Name = "cbxSecurity"
-        Me.cbxSecurity.Size = New System.Drawing.Size(164, 21)
-        Me.cbxSecurity.TabIndex = 15
-        '
-        'label19
-        '
-        Me.label19.Location = New System.Drawing.Point(311, 22)
-        Me.label19.Name = "label19"
-        Me.label19.Size = New System.Drawing.Size(49, 18)
-        Me.label19.TabIndex = 14
-        Me.label19.Text = "&Security:"
-        '
         'frmPop3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -489,6 +490,7 @@ Partial Class frmPop3
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmPop3"

@@ -224,7 +224,7 @@ void CDialogSmtp::OnSend()
     CString strToken = m_strAttachment.Tokenize( _T(";"), nPos );
     while( strToken != _T("") )
     {
-      m_oMessage->AddAttachment( ( LPCTSTR ) strToken, _T("") );
+      m_oMessage->AddAttachment( ( LPCTSTR ) strToken, _T(""), VARIANT_FALSE );
       if( m_oMessage->LastError != 0 )
         goto _EndSend;
       strToken = m_strAttachment.Tokenize( _T(";"), nPos );

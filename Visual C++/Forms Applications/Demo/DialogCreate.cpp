@@ -184,7 +184,7 @@ void CDialogCreate::OnSave()
 	// Set Attachments
 	if( m_strAttachments != "" )
 	{
-		oMessage->AddAttachment( ( LPCTSTR ) m_strAttachments, _T("") );
+		oMessage->AddAttachment( ( LPCTSTR ) m_strAttachments, _T(""), VARIANT_FALSE);
 		if( oMessage->LastError != 0L )
 			goto _EndOnSave;
 	}
@@ -207,7 +207,7 @@ void CDialogCreate::OnSave()
 	// Set Attachments
 	if( m_strAttachments != "" )
 	{
-		oMessage->AddAttachment( ( LPCTSTR ) m_strAttachments, _T("") );
+		oMessage->AddAttachment( ( LPCTSTR ) m_strAttachments, _T(""), VARIANT_FALSE);
 		if( oMessage->LastError != 0L )
 			goto _EndOnSave;
 	}

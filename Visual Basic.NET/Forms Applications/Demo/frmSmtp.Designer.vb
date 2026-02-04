@@ -22,6 +22,7 @@ Partial Class frmSmtp
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSmtp))
         Me.cbxFormat = New System.Windows.Forms.ComboBox()
         Me.txtBody = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -46,6 +47,9 @@ Partial Class frmSmtp
         Me.txtToAddress = New System.Windows.Forms.TextBox()
         Me.label20 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnOAuth = New System.Windows.Forms.Button()
+        Me.cbxSecurity = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.txtFromName = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtFromAddress = New System.Windows.Forms.TextBox()
@@ -66,9 +70,6 @@ Partial Class frmSmtp
         Me.label14 = New System.Windows.Forms.Label()
         Me.label13 = New System.Windows.Forms.Label()
         Me.lblInfo = New System.Windows.Forms.Label()
-        Me.btnOAuth = New System.Windows.Forms.Button()
-        Me.cbxSecurity = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.groupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -297,6 +298,32 @@ Partial Class frmSmtp
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "SMTP Server"
         '
+        'btnOAuth
+        '
+        Me.btnOAuth.Location = New System.Drawing.Point(391, 44)
+        Me.btnOAuth.Name = "btnOAuth"
+        Me.btnOAuth.Size = New System.Drawing.Size(174, 23)
+        Me.btnOAuth.TabIndex = 16
+        Me.btnOAuth.Text = "OAuth Settings..."
+        Me.btnOAuth.UseVisualStyleBackColor = True
+        '
+        'cbxSecurity
+        '
+        Me.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxSecurity.FormattingEnabled = True
+        Me.cbxSecurity.Location = New System.Drawing.Point(391, 17)
+        Me.cbxSecurity.Name = "cbxSecurity"
+        Me.cbxSecurity.Size = New System.Drawing.Size(174, 21)
+        Me.cbxSecurity.TabIndex = 15
+        '
+        'Label2
+        '
+        Me.Label2.Location = New System.Drawing.Point(336, 22)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(49, 18)
+        Me.Label2.TabIndex = 14
+        Me.Label2.Text = "&Security:"
+        '
         'txtFromName
         '
         Me.txtFromName.Location = New System.Drawing.Point(392, 116)
@@ -463,32 +490,6 @@ Partial Class frmSmtp
         Me.lblInfo.TabIndex = 6
         Me.lblInfo.Text = "[Info]"
         '
-        'btnOAuth
-        '
-        Me.btnOAuth.Location = New System.Drawing.Point(391, 44)
-        Me.btnOAuth.Name = "btnOAuth"
-        Me.btnOAuth.Size = New System.Drawing.Size(174, 23)
-        Me.btnOAuth.TabIndex = 16
-        Me.btnOAuth.Text = "OAuth Settings..."
-        Me.btnOAuth.UseVisualStyleBackColor = True
-        '
-        'cbxSecurity
-        '
-        Me.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxSecurity.FormattingEnabled = True
-        Me.cbxSecurity.Location = New System.Drawing.Point(391, 17)
-        Me.cbxSecurity.Name = "cbxSecurity"
-        Me.cbxSecurity.Size = New System.Drawing.Size(174, 21)
-        Me.cbxSecurity.TabIndex = 15
-        '
-        'Label2
-        '
-        Me.Label2.Location = New System.Drawing.Point(336, 22)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(49, 18)
-        Me.Label2.TabIndex = 14
-        Me.Label2.Text = "&Security:"
-        '
         'frmSmtp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -500,6 +501,7 @@ Partial Class frmSmtp
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.groupBox3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmSmtp"

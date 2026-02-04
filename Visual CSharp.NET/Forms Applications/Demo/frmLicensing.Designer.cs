@@ -229,7 +229,7 @@
       this.btnRegister.Name = "btnRegister";
       this.btnRegister.Size = new System.Drawing.Size(100, 22);
       this.btnRegister.TabIndex = 1;
-      this.btnRegister.Text = "Enter serial key...";
+      this.btnRegister.Text = "Enter key...";
       this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
       // 
       // txtLicense

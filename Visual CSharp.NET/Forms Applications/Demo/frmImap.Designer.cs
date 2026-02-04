@@ -28,7 +28,11 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImap));
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.btnOAuth = new System.Windows.Forms.Button();
+      this.cbxSecurity = new System.Windows.Forms.ComboBox();
+      this.label19 = new System.Windows.Forms.Label();
       this.btnDisconnect = new System.Windows.Forms.Button();
       this.btnConnect = new System.Windows.Forms.Button();
       this.txtPassword = new System.Windows.Forms.TextBox();
@@ -89,9 +93,6 @@
       this.txtFrom = new System.Windows.Forms.TextBox();
       this.Label5 = new System.Windows.Forms.Label();
       this.label11 = new System.Windows.Forms.Label();
-      this.cbxSecurity = new System.Windows.Forms.ComboBox();
-      this.label19 = new System.Windows.Forms.Label();
-      this.btnOAuth = new System.Windows.Forms.Button();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.groupBox3.SuspendLayout();
@@ -123,6 +124,34 @@
       this.groupBox1.TabIndex = 0;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Connection";
+      // 
+      // btnOAuth
+      // 
+      this.btnOAuth.Location = new System.Drawing.Point(396, 17);
+      this.btnOAuth.Name = "btnOAuth";
+      this.btnOAuth.Size = new System.Drawing.Size(108, 23);
+      this.btnOAuth.TabIndex = 15;
+      this.btnOAuth.Text = "OAuth Settings...";
+      this.btnOAuth.UseVisualStyleBackColor = true;
+      this.btnOAuth.Click += new System.EventHandler(this.btnOAuth_Click);
+      // 
+      // cbxSecurity
+      // 
+      this.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cbxSecurity.FormattingEnabled = true;
+      this.cbxSecurity.Location = new System.Drawing.Point(290, 19);
+      this.cbxSecurity.Name = "cbxSecurity";
+      this.cbxSecurity.Size = new System.Drawing.Size(100, 21);
+      this.cbxSecurity.TabIndex = 14;
+      this.cbxSecurity.SelectedIndexChanged += new System.EventHandler(this.cbxSecurity_SelectedIndexChanged);
+      // 
+      // label19
+      // 
+      this.label19.Location = new System.Drawing.Point(199, 22);
+      this.label19.Name = "label19";
+      this.label19.Size = new System.Drawing.Size(49, 18);
+      this.label19.TabIndex = 13;
+      this.label19.Text = "&Security:";
       // 
       // btnDisconnect
       // 
@@ -689,34 +718,6 @@
       this.label11.TabIndex = 0;
       this.label11.Text = "From:";
       // 
-      // cbxSecurity
-      // 
-      this.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.cbxSecurity.FormattingEnabled = true;
-      this.cbxSecurity.Location = new System.Drawing.Point(290, 19);
-      this.cbxSecurity.Name = "cbxSecurity";
-      this.cbxSecurity.Size = new System.Drawing.Size(100, 21);
-      this.cbxSecurity.TabIndex = 14;
-      this.cbxSecurity.SelectedIndexChanged += new System.EventHandler(this.cbxSecurity_SelectedIndexChanged);
-      // 
-      // label19
-      // 
-      this.label19.Location = new System.Drawing.Point(199, 22);
-      this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(49, 18);
-      this.label19.TabIndex = 13;
-      this.label19.Text = "&Security:";
-      // 
-      // btnOAuth
-      // 
-      this.btnOAuth.Location = new System.Drawing.Point(396, 17);
-      this.btnOAuth.Name = "btnOAuth";
-      this.btnOAuth.Size = new System.Drawing.Size(108, 23);
-      this.btnOAuth.TabIndex = 15;
-      this.btnOAuth.Text = "OAuth Settings...";
-      this.btnOAuth.UseVisualStyleBackColor = true;
-      this.btnOAuth.Click += new System.EventHandler(this.btnOAuth_Click);
-      // 
       // frmImap
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -728,6 +729,7 @@
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.groupBox1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "frmImap";
       this.Text = "Auron Email Component - C#.NET IMAP Demo";
       this.groupBox1.ResumeLayout(false);

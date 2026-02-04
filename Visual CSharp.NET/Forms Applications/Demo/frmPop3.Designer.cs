@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPop3));
       this.columnFrom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.btnList = new System.Windows.Forms.Button();
       this.lvMessages = new System.Windows.Forms.ListView();
@@ -61,6 +62,9 @@
       this.txtPort = new System.Windows.Forms.TextBox();
       this.label11 = new System.Windows.Forms.Label();
       this.GroupBox1 = new System.Windows.Forms.GroupBox();
+      this.btnOAuth = new System.Windows.Forms.Button();
+      this.cbxSecurity = new System.Windows.Forms.ComboBox();
+      this.label19 = new System.Windows.Forms.Label();
       this.btnDisconnect = new System.Windows.Forms.Button();
       this.btnConnect = new System.Windows.Forms.Button();
       this.txtPassword = new System.Windows.Forms.TextBox();
@@ -70,9 +74,6 @@
       this.Label2 = new System.Windows.Forms.Label();
       this.Label1 = new System.Windows.Forms.Label();
       this.lblInfo = new System.Windows.Forms.Label();
-      this.btnOAuth = new System.Windows.Forms.Button();
-      this.cbxSecurity = new System.Windows.Forms.ComboBox();
-      this.label19 = new System.Windows.Forms.Label();
       this.GroupBox2.SuspendLayout();
       this.GroupBox3.SuspendLayout();
       this.GroupBox4.SuspendLayout();
@@ -391,6 +392,34 @@
       this.GroupBox1.TabStop = false;
       this.GroupBox1.Text = "POP3 Server";
       // 
+      // btnOAuth
+      // 
+      this.btnOAuth.Location = new System.Drawing.Point(370, 46);
+      this.btnOAuth.Name = "btnOAuth";
+      this.btnOAuth.Size = new System.Drawing.Size(164, 23);
+      this.btnOAuth.TabIndex = 13;
+      this.btnOAuth.Text = "OAuth Settings...";
+      this.btnOAuth.UseVisualStyleBackColor = true;
+      this.btnOAuth.Click += new System.EventHandler(this.btnOAuth_Click);
+      // 
+      // cbxSecurity
+      // 
+      this.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cbxSecurity.FormattingEnabled = true;
+      this.cbxSecurity.Location = new System.Drawing.Point(370, 19);
+      this.cbxSecurity.Name = "cbxSecurity";
+      this.cbxSecurity.Size = new System.Drawing.Size(164, 21);
+      this.cbxSecurity.TabIndex = 12;
+      this.cbxSecurity.SelectedIndexChanged += new System.EventHandler(this.cbxSecurity_SelectedIndexChanged);
+      // 
+      // label19
+      // 
+      this.label19.Location = new System.Drawing.Point(311, 22);
+      this.label19.Name = "label19";
+      this.label19.Size = new System.Drawing.Size(49, 18);
+      this.label19.TabIndex = 11;
+      this.label19.Text = "&Security:";
+      // 
       // btnDisconnect
       // 
       this.btnDisconnect.Location = new System.Drawing.Point(314, 111);
@@ -466,34 +495,6 @@
       this.lblInfo.TabIndex = 43;
       this.lblInfo.Text = "[Info]";
       // 
-      // btnOAuth
-      // 
-      this.btnOAuth.Location = new System.Drawing.Point(370, 46);
-      this.btnOAuth.Name = "btnOAuth";
-      this.btnOAuth.Size = new System.Drawing.Size(164, 23);
-      this.btnOAuth.TabIndex = 13;
-      this.btnOAuth.Text = "OAuth Settings...";
-      this.btnOAuth.UseVisualStyleBackColor = true;
-      this.btnOAuth.Click += new System.EventHandler(this.btnOAuth_Click);
-      // 
-      // cbxSecurity
-      // 
-      this.cbxSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.cbxSecurity.FormattingEnabled = true;
-      this.cbxSecurity.Location = new System.Drawing.Point(370, 19);
-      this.cbxSecurity.Name = "cbxSecurity";
-      this.cbxSecurity.Size = new System.Drawing.Size(164, 21);
-      this.cbxSecurity.TabIndex = 12;
-      this.cbxSecurity.SelectedIndexChanged += new System.EventHandler(this.cbxSecurity_SelectedIndexChanged);
-      // 
-      // label19
-      // 
-      this.label19.Location = new System.Drawing.Point(311, 22);
-      this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(49, 18);
-      this.label19.TabIndex = 11;
-      this.label19.Text = "&Security:";
-      // 
       // frmPop3
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -505,6 +506,7 @@
       this.Controls.Add(this.GroupBox4);
       this.Controls.Add(this.GroupBox1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "frmPop3";

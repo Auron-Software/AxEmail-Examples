@@ -22,34 +22,34 @@ Partial Class frmLicensing
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.btnClose = New System.Windows.Forms.Button
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.llblUrlSales = New System.Windows.Forms.LinkLabel
-        Me.Label15 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.llblUrlOrder = New System.Windows.Forms.LinkLabel
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox
-        Me.llblMailSupport = New System.Windows.Forms.LinkLabel
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.llblUrlSupport = New System.Windows.Forms.LinkLabel
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox
-        Me.btnRegister = New System.Windows.Forms.Button
-        Me.txtLicense = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.lblVersion = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.btnClose = New System.Windows.Forms.Button()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.llblUrlSales = New System.Windows.Forms.LinkLabel()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.llblUrlOrder = New System.Windows.Forms.LinkLabel()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.llblMailSupport = New System.Windows.Forms.LinkLabel()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.llblUrlSupport = New System.Windows.Forms.LinkLabel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.btnRegister = New System.Windows.Forms.Button()
+        Me.txtLicense = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblVersion = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -120,8 +120,8 @@ Partial Class frmLicensing
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(428, 16)
         Me.Label14.TabIndex = 111
-        Me.Label14.Text = "After purchase, you will receive a license certificate (including serial key) via" & _
-            " e-mail."
+        Me.Label14.Text = "After purchase, you will receive a license certificate (including serial key) via" &
+    " e-mail."
         '
         'llblUrlOrder
         '
@@ -198,7 +198,7 @@ Partial Class frmLicensing
         Me.llblUrlSupport.AutoSize = True
         Me.llblUrlSupport.Location = New System.Drawing.Point(182, 138)
         Me.llblUrlSupport.Name = "llblUrlSupport"
-        Me.llblUrlSupport.Size = New System.Drawing.Size(229, 13)
+        Me.llblUrlSupport.Size = New System.Drawing.Size(239, 13)
         Me.llblUrlSupport.TabIndex = 3
         Me.llblUrlSupport.TabStop = True
         Me.llblUrlSupport.Text = "www.auronsoftware.com/smtp-pop3-component/"
@@ -236,7 +236,7 @@ Partial Class frmLicensing
         Me.btnRegister.Name = "btnRegister"
         Me.btnRegister.Size = New System.Drawing.Size(100, 22)
         Me.btnRegister.TabIndex = 2
-        Me.btnRegister.Text = "&Enter serial key..."
+        Me.btnRegister.Text = "&Enter key..."
         '
         'txtLicense
         '
@@ -295,7 +295,7 @@ Partial Class frmLicensing
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(152, 13)
+        Me.Label1.Size = New System.Drawing.Size(120, 13)
         Me.Label1.TabIndex = 92
         Me.Label1.Text = "Auron Email Component"
         '

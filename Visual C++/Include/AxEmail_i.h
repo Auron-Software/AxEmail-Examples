@@ -4,10 +4,10 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Sat Jan 12 14:25:53 2019
+/* at Fri Mar 24 09:06:42 2023
  */
 /* Compiler settings for AxEmail.idl:
-    Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 7.00.0555 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
@@ -51,6 +51,12 @@ typedef interface IMessage IMessage;
 #endif 	/* __IMessage_FWD_DEFINED__ */
 
 
+#ifndef __IOAuth2_FWD_DEFINED__
+#define __IOAuth2_FWD_DEFINED__
+typedef interface IOAuth2 IOAuth2;
+#endif 	/* __IOAuth2_FWD_DEFINED__ */
+
+
 #ifndef __ISmtp_FWD_DEFINED__
 #define __ISmtp_FWD_DEFINED__
 typedef interface ISmtp ISmtp;
@@ -91,6 +97,18 @@ typedef struct Message Message;
 #endif /* __cplusplus */
 
 #endif 	/* __Message_FWD_DEFINED__ */
+
+
+#ifndef __OAuth2_FWD_DEFINED__
+#define __OAuth2_FWD_DEFINED__
+
+#ifdef __cplusplus
+typedef class OAuth2 OAuth2;
+#else
+typedef struct OAuth2 OAuth2;
+#endif /* __cplusplus */
+
+#endif 	/* __OAuth2_FWD_DEFINED__ */
 
 
 #ifndef __Smtp_FWD_DEFINED__
@@ -179,6 +197,18 @@ EXTERN_C const IID IID_IMessage;
     public:
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LastError( 
             /* [retval][out] */ LONG *LastError) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_UnsubscribeEmail( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_UnsubscribeEmail( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_UnsubscribeUrl( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_UnsubscribeUrl( 
+            /* [in] */ BSTR Val) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_FromName( 
             /* [retval][out] */ BSTR *Name) = 0;
@@ -307,7 +337,8 @@ EXTERN_C const IID IID_IMessage;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE AddAttachment( 
             /* [in] */ BSTR FileName,
-            /* [defaultvalue][in] */ BSTR AttachmentName = L"") = 0;
+            /* [defaultvalue][in] */ BSTR AttachmentName = L"",
+            /* [defaultvalue][in] */ VARIANT_BOOL InlineDisposition = 0) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE SaveAttachment( 
             /* [in] */ LONG ID,
@@ -333,7 +364,12 @@ EXTERN_C const IID IID_IMessage;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE AddHeader( 
             /* [in] */ BSTR Name,
-            /* [in] */ BSTR Value) = 0;
+            /* [in] */ BSTR Value,
+            /* [defaultvalue][in] */ VARIANT_BOOL Enquote = -1) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE HtmlToPlainText( 
+            /* [in] */ BSTR Html,
+            /* [retval][out] */ BSTR *Plain) = 0;
         
     };
     
@@ -387,6 +423,22 @@ EXTERN_C const IID IID_IMessage;
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LastError )( 
             IMessage * This,
             /* [retval][out] */ LONG *LastError);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_UnsubscribeEmail )( 
+            IMessage * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_UnsubscribeEmail )( 
+            IMessage * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_UnsubscribeUrl )( 
+            IMessage * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_UnsubscribeUrl )( 
+            IMessage * This,
+            /* [in] */ BSTR Val);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_FromName )( 
             IMessage * This,
@@ -556,7 +608,8 @@ EXTERN_C const IID IID_IMessage;
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *AddAttachment )( 
             IMessage * This,
             /* [in] */ BSTR FileName,
-            /* [defaultvalue][in] */ BSTR AttachmentName);
+            /* [defaultvalue][in] */ BSTR AttachmentName,
+            /* [defaultvalue][in] */ VARIANT_BOOL InlineDisposition);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *SaveAttachment )( 
             IMessage * This,
@@ -590,7 +643,13 @@ EXTERN_C const IID IID_IMessage;
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *AddHeader )( 
             IMessage * This,
             /* [in] */ BSTR Name,
-            /* [in] */ BSTR Value);
+            /* [in] */ BSTR Value,
+            /* [defaultvalue][in] */ VARIANT_BOOL Enquote);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *HtmlToPlainText )( 
+            IMessage * This,
+            /* [in] */ BSTR Html,
+            /* [retval][out] */ BSTR *Plain);
         
         END_INTERFACE
     } IMessageVtbl;
@@ -630,6 +689,18 @@ EXTERN_C const IID IID_IMessage;
 
 #define IMessage_get_LastError(This,LastError)	\
     ( (This)->lpVtbl -> get_LastError(This,LastError) ) 
+
+#define IMessage_get_UnsubscribeEmail(This,Val)	\
+    ( (This)->lpVtbl -> get_UnsubscribeEmail(This,Val) ) 
+
+#define IMessage_put_UnsubscribeEmail(This,Val)	\
+    ( (This)->lpVtbl -> put_UnsubscribeEmail(This,Val) ) 
+
+#define IMessage_get_UnsubscribeUrl(This,Val)	\
+    ( (This)->lpVtbl -> get_UnsubscribeUrl(This,Val) ) 
+
+#define IMessage_put_UnsubscribeUrl(This,Val)	\
+    ( (This)->lpVtbl -> put_UnsubscribeUrl(This,Val) ) 
 
 #define IMessage_get_FromName(This,Name)	\
     ( (This)->lpVtbl -> get_FromName(This,Name) ) 
@@ -751,8 +822,8 @@ EXTERN_C const IID IID_IMessage;
 #define IMessage_GetAttachmentSize(This,ID,Size)	\
     ( (This)->lpVtbl -> GetAttachmentSize(This,ID,Size) ) 
 
-#define IMessage_AddAttachment(This,FileName,AttachmentName)	\
-    ( (This)->lpVtbl -> AddAttachment(This,FileName,AttachmentName) ) 
+#define IMessage_AddAttachment(This,FileName,AttachmentName,InlineDisposition)	\
+    ( (This)->lpVtbl -> AddAttachment(This,FileName,AttachmentName,InlineDisposition) ) 
 
 #define IMessage_SaveAttachment(This,ID,SaveAsFile)	\
     ( (This)->lpVtbl -> SaveAttachment(This,ID,SaveAsFile) ) 
@@ -775,8 +846,11 @@ EXTERN_C const IID IID_IMessage;
 #define IMessage_GetHeaderValue(This,Name,Value)	\
     ( (This)->lpVtbl -> GetHeaderValue(This,Name,Value) ) 
 
-#define IMessage_AddHeader(This,Name,Value)	\
-    ( (This)->lpVtbl -> AddHeader(This,Name,Value) ) 
+#define IMessage_AddHeader(This,Name,Value,Enquote)	\
+    ( (This)->lpVtbl -> AddHeader(This,Name,Value,Enquote) ) 
+
+#define IMessage_HtmlToPlainText(This,Html,Plain)	\
+    ( (This)->lpVtbl -> HtmlToPlainText(This,Html,Plain) ) 
 
 #endif /* COBJMACROS */
 
@@ -787,6 +861,741 @@ EXTERN_C const IID IID_IMessage;
 
 
 #endif 	/* __IMessage_INTERFACE_DEFINED__ */
+
+
+#ifndef __IOAuth2_INTERFACE_DEFINED__
+#define __IOAuth2_INTERFACE_DEFINED__
+
+/* interface IOAuth2 */
+/* [unique][helpstring][nonextensible][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IOAuth2;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("FFB7E17F-EF95-437E-BB93-EF506948AD18")
+    IOAuth2 : public IDispatch
+    {
+    public:
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Version( 
+            /* [retval][out] */ BSTR *Version) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Build( 
+            /* [retval][out] */ BSTR *Build) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Module( 
+            /* [retval][out] */ BSTR *Module) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LicenseStatus( 
+            /* [retval][out] */ BSTR *LicenseStatus) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LicenseKey( 
+            /* [retval][out] */ BSTR *LicenseKey) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_LicenseKey( 
+            /* [in] */ BSTR LicenseKey) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE SaveLicenseKey( void) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LogFile( 
+            /* [retval][out] */ BSTR *Logfile) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_LogFile( 
+            /* [in] */ BSTR Logfile) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ActivityFile( 
+            /* [retval][out] */ BSTR *ActivityFile) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ActivityFile( 
+            /* [in] */ BSTR ActivityFile) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Sleep( 
+            LONG Ms) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Clear( void) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LastError( 
+            /* [retval][out] */ LONG *LastError) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetErrorDescription( 
+            /* [in] */ LONG ErrorCode,
+            /* [retval][out] */ BSTR *Description) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Flow( 
+            /* [retval][out] */ LONG *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_AuthCodeUrl( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_DeviceCodeUrl( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_TokenExchangeUrl( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_RedirectUrl( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_VerificationUrl( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ClientID( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ClientSecret( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Scope( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_SuccessHtml( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ErrorHtml( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Flow( 
+            /* [in] */ LONG Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_AuthCodeUrl( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_DeviceCodeUrl( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_TokenExchangeUrl( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_RedirectUrl( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_VerificationUrl( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ClientID( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ClientSecret( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Scope( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_SuccessHtml( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ErrorHtml( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_AutoOpenBrowser( 
+            /* [retval][out] */ VARIANT_BOOL *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LoginUrl( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_DeviceCode( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_UserCode( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_UserCodeMessage( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_BearerToken( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_RefreshToken( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_BearerExpInSeconds( 
+            /* [retval][out] */ LONG *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_UserCodeExpInSeconds( 
+            /* [retval][out] */ LONG *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_PollIntervalInSeconds( 
+            /* [retval][out] */ LONG *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LastResponse( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ResultScope( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ResultError( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ResultErrorDescription( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_AutoOpenBrowser( 
+            /* [in] */ VARIANT_BOOL Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_BearerToken( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_RefreshToken( 
+            /* [in] */ BSTR Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ProxyServer( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ProxyAccount( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ProxyPassword( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ProxyServer( 
+            /* [in] */ BSTR newVal) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ProxyAccount( 
+            /* [in] */ BSTR newVal) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ProxyPassword( 
+            /* [in] */ BSTR newVal) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Login( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE WaitForTokens( 
+            /* [in] */ LONG nTimeoutMs) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RefreshBearerToken( void) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IOAuth2Vtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IOAuth2 * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            __RPC__deref_out  void **ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IOAuth2 * This);
+        
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IOAuth2 * This);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
+            IOAuth2 * This,
+            /* [out] */ UINT *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
+            IOAuth2 * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo **ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
+            IOAuth2 * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR *rgszNames,
+            /* [range][in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
+            IOAuth2 * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS *pDispParams,
+            /* [out] */ VARIANT *pVarResult,
+            /* [out] */ EXCEPINFO *pExcepInfo,
+            /* [out] */ UINT *puArgErr);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Version )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Version);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Build )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Build);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Module )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Module);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LicenseStatus )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *LicenseStatus);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LicenseKey )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *LicenseKey);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_LicenseKey )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR LicenseKey);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *SaveLicenseKey )( 
+            IOAuth2 * This);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LogFile )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Logfile);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_LogFile )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Logfile);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ActivityFile )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *ActivityFile);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_ActivityFile )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR ActivityFile);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Sleep )( 
+            IOAuth2 * This,
+            LONG Ms);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Clear )( 
+            IOAuth2 * This);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LastError )( 
+            IOAuth2 * This,
+            /* [retval][out] */ LONG *LastError);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetErrorDescription )( 
+            IOAuth2 * This,
+            /* [in] */ LONG ErrorCode,
+            /* [retval][out] */ BSTR *Description);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Flow )( 
+            IOAuth2 * This,
+            /* [retval][out] */ LONG *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_AuthCodeUrl )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_DeviceCodeUrl )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_TokenExchangeUrl )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_RedirectUrl )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_VerificationUrl )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ClientID )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ClientSecret )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Scope )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_SuccessHtml )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ErrorHtml )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_Flow )( 
+            IOAuth2 * This,
+            /* [in] */ LONG Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_AuthCodeUrl )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_DeviceCodeUrl )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_TokenExchangeUrl )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_RedirectUrl )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_VerificationUrl )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_ClientID )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_ClientSecret )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_Scope )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_SuccessHtml )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_ErrorHtml )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_AutoOpenBrowser )( 
+            IOAuth2 * This,
+            /* [retval][out] */ VARIANT_BOOL *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LoginUrl )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_DeviceCode )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_UserCode )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_UserCodeMessage )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_BearerToken )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_RefreshToken )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_BearerExpInSeconds )( 
+            IOAuth2 * This,
+            /* [retval][out] */ LONG *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_UserCodeExpInSeconds )( 
+            IOAuth2 * This,
+            /* [retval][out] */ LONG *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_PollIntervalInSeconds )( 
+            IOAuth2 * This,
+            /* [retval][out] */ LONG *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LastResponse )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ResultScope )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ResultError )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ResultErrorDescription )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_AutoOpenBrowser )( 
+            IOAuth2 * This,
+            /* [in] */ VARIANT_BOOL Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_BearerToken )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_RefreshToken )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ProxyServer )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ProxyAccount )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ProxyPassword )( 
+            IOAuth2 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_ProxyServer )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR newVal);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_ProxyAccount )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR newVal);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_ProxyPassword )( 
+            IOAuth2 * This,
+            /* [in] */ BSTR newVal);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Login )( 
+            IOAuth2 * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *WaitForTokens )( 
+            IOAuth2 * This,
+            /* [in] */ LONG nTimeoutMs);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *RefreshBearerToken )( 
+            IOAuth2 * This);
+        
+        END_INTERFACE
+    } IOAuth2Vtbl;
+
+    interface IOAuth2
+    {
+        CONST_VTBL struct IOAuth2Vtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IOAuth2_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IOAuth2_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IOAuth2_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IOAuth2_GetTypeInfoCount(This,pctinfo)	\
+    ( (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo) ) 
+
+#define IOAuth2_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    ( (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo) ) 
+
+#define IOAuth2_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    ( (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId) ) 
+
+#define IOAuth2_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
+
+
+#define IOAuth2_get_Version(This,Version)	\
+    ( (This)->lpVtbl -> get_Version(This,Version) ) 
+
+#define IOAuth2_get_Build(This,Build)	\
+    ( (This)->lpVtbl -> get_Build(This,Build) ) 
+
+#define IOAuth2_get_Module(This,Module)	\
+    ( (This)->lpVtbl -> get_Module(This,Module) ) 
+
+#define IOAuth2_get_LicenseStatus(This,LicenseStatus)	\
+    ( (This)->lpVtbl -> get_LicenseStatus(This,LicenseStatus) ) 
+
+#define IOAuth2_get_LicenseKey(This,LicenseKey)	\
+    ( (This)->lpVtbl -> get_LicenseKey(This,LicenseKey) ) 
+
+#define IOAuth2_put_LicenseKey(This,LicenseKey)	\
+    ( (This)->lpVtbl -> put_LicenseKey(This,LicenseKey) ) 
+
+#define IOAuth2_SaveLicenseKey(This)	\
+    ( (This)->lpVtbl -> SaveLicenseKey(This) ) 
+
+#define IOAuth2_get_LogFile(This,Logfile)	\
+    ( (This)->lpVtbl -> get_LogFile(This,Logfile) ) 
+
+#define IOAuth2_put_LogFile(This,Logfile)	\
+    ( (This)->lpVtbl -> put_LogFile(This,Logfile) ) 
+
+#define IOAuth2_get_ActivityFile(This,ActivityFile)	\
+    ( (This)->lpVtbl -> get_ActivityFile(This,ActivityFile) ) 
+
+#define IOAuth2_put_ActivityFile(This,ActivityFile)	\
+    ( (This)->lpVtbl -> put_ActivityFile(This,ActivityFile) ) 
+
+#define IOAuth2_Sleep(This,Ms)	\
+    ( (This)->lpVtbl -> Sleep(This,Ms) ) 
+
+#define IOAuth2_Clear(This)	\
+    ( (This)->lpVtbl -> Clear(This) ) 
+
+#define IOAuth2_get_LastError(This,LastError)	\
+    ( (This)->lpVtbl -> get_LastError(This,LastError) ) 
+
+#define IOAuth2_GetErrorDescription(This,ErrorCode,Description)	\
+    ( (This)->lpVtbl -> GetErrorDescription(This,ErrorCode,Description) ) 
+
+#define IOAuth2_get_Flow(This,Val)	\
+    ( (This)->lpVtbl -> get_Flow(This,Val) ) 
+
+#define IOAuth2_get_AuthCodeUrl(This,Val)	\
+    ( (This)->lpVtbl -> get_AuthCodeUrl(This,Val) ) 
+
+#define IOAuth2_get_DeviceCodeUrl(This,Val)	\
+    ( (This)->lpVtbl -> get_DeviceCodeUrl(This,Val) ) 
+
+#define IOAuth2_get_TokenExchangeUrl(This,Val)	\
+    ( (This)->lpVtbl -> get_TokenExchangeUrl(This,Val) ) 
+
+#define IOAuth2_get_RedirectUrl(This,Val)	\
+    ( (This)->lpVtbl -> get_RedirectUrl(This,Val) ) 
+
+#define IOAuth2_get_VerificationUrl(This,Val)	\
+    ( (This)->lpVtbl -> get_VerificationUrl(This,Val) ) 
+
+#define IOAuth2_get_ClientID(This,Val)	\
+    ( (This)->lpVtbl -> get_ClientID(This,Val) ) 
+
+#define IOAuth2_get_ClientSecret(This,Val)	\
+    ( (This)->lpVtbl -> get_ClientSecret(This,Val) ) 
+
+#define IOAuth2_get_Scope(This,Val)	\
+    ( (This)->lpVtbl -> get_Scope(This,Val) ) 
+
+#define IOAuth2_get_SuccessHtml(This,Val)	\
+    ( (This)->lpVtbl -> get_SuccessHtml(This,Val) ) 
+
+#define IOAuth2_get_ErrorHtml(This,Val)	\
+    ( (This)->lpVtbl -> get_ErrorHtml(This,Val) ) 
+
+#define IOAuth2_put_Flow(This,Val)	\
+    ( (This)->lpVtbl -> put_Flow(This,Val) ) 
+
+#define IOAuth2_put_AuthCodeUrl(This,Val)	\
+    ( (This)->lpVtbl -> put_AuthCodeUrl(This,Val) ) 
+
+#define IOAuth2_put_DeviceCodeUrl(This,Val)	\
+    ( (This)->lpVtbl -> put_DeviceCodeUrl(This,Val) ) 
+
+#define IOAuth2_put_TokenExchangeUrl(This,Val)	\
+    ( (This)->lpVtbl -> put_TokenExchangeUrl(This,Val) ) 
+
+#define IOAuth2_put_RedirectUrl(This,Val)	\
+    ( (This)->lpVtbl -> put_RedirectUrl(This,Val) ) 
+
+#define IOAuth2_put_VerificationUrl(This,Val)	\
+    ( (This)->lpVtbl -> put_VerificationUrl(This,Val) ) 
+
+#define IOAuth2_put_ClientID(This,Val)	\
+    ( (This)->lpVtbl -> put_ClientID(This,Val) ) 
+
+#define IOAuth2_put_ClientSecret(This,Val)	\
+    ( (This)->lpVtbl -> put_ClientSecret(This,Val) ) 
+
+#define IOAuth2_put_Scope(This,Val)	\
+    ( (This)->lpVtbl -> put_Scope(This,Val) ) 
+
+#define IOAuth2_put_SuccessHtml(This,Val)	\
+    ( (This)->lpVtbl -> put_SuccessHtml(This,Val) ) 
+
+#define IOAuth2_put_ErrorHtml(This,Val)	\
+    ( (This)->lpVtbl -> put_ErrorHtml(This,Val) ) 
+
+#define IOAuth2_get_AutoOpenBrowser(This,Val)	\
+    ( (This)->lpVtbl -> get_AutoOpenBrowser(This,Val) ) 
+
+#define IOAuth2_get_LoginUrl(This,Val)	\
+    ( (This)->lpVtbl -> get_LoginUrl(This,Val) ) 
+
+#define IOAuth2_get_DeviceCode(This,Val)	\
+    ( (This)->lpVtbl -> get_DeviceCode(This,Val) ) 
+
+#define IOAuth2_get_UserCode(This,Val)	\
+    ( (This)->lpVtbl -> get_UserCode(This,Val) ) 
+
+#define IOAuth2_get_UserCodeMessage(This,Val)	\
+    ( (This)->lpVtbl -> get_UserCodeMessage(This,Val) ) 
+
+#define IOAuth2_get_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> get_BearerToken(This,Val) ) 
+
+#define IOAuth2_get_RefreshToken(This,Val)	\
+    ( (This)->lpVtbl -> get_RefreshToken(This,Val) ) 
+
+#define IOAuth2_get_BearerExpInSeconds(This,Val)	\
+    ( (This)->lpVtbl -> get_BearerExpInSeconds(This,Val) ) 
+
+#define IOAuth2_get_UserCodeExpInSeconds(This,Val)	\
+    ( (This)->lpVtbl -> get_UserCodeExpInSeconds(This,Val) ) 
+
+#define IOAuth2_get_PollIntervalInSeconds(This,Val)	\
+    ( (This)->lpVtbl -> get_PollIntervalInSeconds(This,Val) ) 
+
+#define IOAuth2_get_LastResponse(This,Val)	\
+    ( (This)->lpVtbl -> get_LastResponse(This,Val) ) 
+
+#define IOAuth2_get_ResultScope(This,Val)	\
+    ( (This)->lpVtbl -> get_ResultScope(This,Val) ) 
+
+#define IOAuth2_get_ResultError(This,Val)	\
+    ( (This)->lpVtbl -> get_ResultError(This,Val) ) 
+
+#define IOAuth2_get_ResultErrorDescription(This,Val)	\
+    ( (This)->lpVtbl -> get_ResultErrorDescription(This,Val) ) 
+
+#define IOAuth2_put_AutoOpenBrowser(This,Val)	\
+    ( (This)->lpVtbl -> put_AutoOpenBrowser(This,Val) ) 
+
+#define IOAuth2_put_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> put_BearerToken(This,Val) ) 
+
+#define IOAuth2_put_RefreshToken(This,Val)	\
+    ( (This)->lpVtbl -> put_RefreshToken(This,Val) ) 
+
+#define IOAuth2_get_ProxyServer(This,Val)	\
+    ( (This)->lpVtbl -> get_ProxyServer(This,Val) ) 
+
+#define IOAuth2_get_ProxyAccount(This,Val)	\
+    ( (This)->lpVtbl -> get_ProxyAccount(This,Val) ) 
+
+#define IOAuth2_get_ProxyPassword(This,Val)	\
+    ( (This)->lpVtbl -> get_ProxyPassword(This,Val) ) 
+
+#define IOAuth2_put_ProxyServer(This,newVal)	\
+    ( (This)->lpVtbl -> put_ProxyServer(This,newVal) ) 
+
+#define IOAuth2_put_ProxyAccount(This,newVal)	\
+    ( (This)->lpVtbl -> put_ProxyAccount(This,newVal) ) 
+
+#define IOAuth2_put_ProxyPassword(This,newVal)	\
+    ( (This)->lpVtbl -> put_ProxyPassword(This,newVal) ) 
+
+#define IOAuth2_Login(This)	\
+    ( (This)->lpVtbl -> Login(This) ) 
+
+#define IOAuth2_WaitForTokens(This,nTimeoutMs)	\
+    ( (This)->lpVtbl -> WaitForTokens(This,nTimeoutMs) ) 
+
+#define IOAuth2_RefreshBearerToken(This)	\
+    ( (This)->lpVtbl -> RefreshBearerToken(This) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IOAuth2_INTERFACE_DEFINED__ */
 
 
 #ifndef __ISmtp_INTERFACE_DEFINED__
@@ -895,6 +1704,12 @@ EXTERN_C const IID IID_ISmtp;
         
         virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_IpVersion( 
             /* [in] */ LONG IpVersion) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_BearerToken( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_BearerToken( 
+            /* [in] */ BSTR Val) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LastSmtpResponse( 
             /* [retval][out] */ BSTR *LastSmtpResponse) = 0;
@@ -1084,6 +1899,14 @@ EXTERN_C const IID IID_ISmtp;
             ISmtp * This,
             /* [in] */ LONG IpVersion);
         
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_BearerToken )( 
+            ISmtp * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_BearerToken )( 
+            ISmtp * This,
+            /* [in] */ BSTR Val);
+        
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_LastSmtpResponse )( 
             ISmtp * This,
             /* [retval][out] */ BSTR *LastSmtpResponse);
@@ -1234,6 +2057,12 @@ EXTERN_C const IID IID_ISmtp;
 #define ISmtp_put_IpVersion(This,IpVersion)	\
     ( (This)->lpVtbl -> put_IpVersion(This,IpVersion) ) 
 
+#define ISmtp_get_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> get_BearerToken(This,Val) ) 
+
+#define ISmtp_put_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> put_BearerToken(This,Val) ) 
+
 #define ISmtp_get_LastSmtpResponse(This,LastSmtpResponse)	\
     ( (This)->lpVtbl -> get_LastSmtpResponse(This,LastSmtpResponse) ) 
 
@@ -1364,13 +2193,19 @@ EXTERN_C const IID IID_IPop3;
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LastPop3Response( 
             /* [retval][out] */ BSTR *LastPop3Response) = 0;
         
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_BearerToken( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_BearerToken( 
+            /* [in] */ BSTR Val) = 0;
+        
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE SetSecure( 
             /* [defaultvalue][in] */ LONG Port = 995) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Connect( 
-            BSTR Host,
-            BSTR Account,
-            BSTR Password) = 0;
+            /* [in] */ BSTR Host,
+            /* [in] */ BSTR Account,
+            /* [defaultvalue][in] */ BSTR Password = L"") = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Disconnect( void) = 0;
         
@@ -1559,15 +2394,23 @@ EXTERN_C const IID IID_IPop3;
             IPop3 * This,
             /* [retval][out] */ BSTR *LastPop3Response);
         
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_BearerToken )( 
+            IPop3 * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_BearerToken )( 
+            IPop3 * This,
+            /* [in] */ BSTR Val);
+        
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *SetSecure )( 
             IPop3 * This,
             /* [defaultvalue][in] */ LONG Port);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *Connect )( 
             IPop3 * This,
-            BSTR Host,
-            BSTR Account,
-            BSTR Password);
+            /* [in] */ BSTR Host,
+            /* [in] */ BSTR Account,
+            /* [defaultvalue][in] */ BSTR Password);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *Disconnect )( 
             IPop3 * This);
@@ -1720,6 +2563,12 @@ EXTERN_C const IID IID_IPop3;
 #define IPop3_get_LastPop3Response(This,LastPop3Response)	\
     ( (This)->lpVtbl -> get_LastPop3Response(This,LastPop3Response) ) 
 
+#define IPop3_get_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> get_BearerToken(This,Val) ) 
+
+#define IPop3_put_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> put_BearerToken(This,Val) ) 
+
 #define IPop3_SetSecure(This,Port)	\
     ( (This)->lpVtbl -> SetSecure(This,Port) ) 
 
@@ -1810,6 +2659,9 @@ EXTERN_C const IID IID_IImapFetchData;
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetErrorDescription( 
             /* [in] */ LONG ErrorCode,
             /* [retval][out] */ BSTR *Description) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Sequence( 
+            /* [retval][out] */ LONG *pVal) = 0;
         
     };
     
@@ -1913,6 +2765,10 @@ EXTERN_C const IID IID_IImapFetchData;
             /* [in] */ LONG ErrorCode,
             /* [retval][out] */ BSTR *Description);
         
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Sequence )( 
+            IImapFetchData * This,
+            /* [retval][out] */ LONG *pVal);
+        
         END_INTERFACE
     } IImapFetchDataVtbl;
 
@@ -1984,6 +2840,9 @@ EXTERN_C const IID IID_IImapFetchData;
 
 #define IImapFetchData_GetErrorDescription(This,ErrorCode,Description)	\
     ( (This)->lpVtbl -> GetErrorDescription(This,ErrorCode,Description) ) 
+
+#define IImapFetchData_get_Sequence(This,pVal)	\
+    ( (This)->lpVtbl -> get_Sequence(This,pVal) ) 
 
 #endif /* COBJMACROS */
 
@@ -2154,6 +3013,12 @@ EXTERN_C const IID IID_IImap;
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_UidNext( 
             /* [retval][out] */ LONG *UidNext) = 0;
         
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_BearerToken( 
+            /* [retval][out] */ BSTR *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_BearerToken( 
+            /* [in] */ BSTR Val) = 0;
+        
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE SetSecure( 
             /* [defaultvalue][in] */ LONG Port = 993) = 0;
         
@@ -2283,6 +3148,16 @@ EXTERN_C const IID IID_IImap;
             /* [in] */ LONG Second,
             /* [in] */ LONG OffsetMinute,
             /* [retval][out] */ BSTR *DateString) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Idle( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE IdleDone( void) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_IdleResetTimeMin( 
+            /* [retval][out] */ LONG *Val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_IdleResetTimeMin( 
+            /* [in] */ LONG Val) = 0;
         
     };
     
@@ -2524,6 +3399,14 @@ EXTERN_C const IID IID_IImap;
             IImap * This,
             /* [retval][out] */ LONG *UidNext);
         
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_BearerToken )( 
+            IImap * This,
+            /* [retval][out] */ BSTR *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_BearerToken )( 
+            IImap * This,
+            /* [in] */ BSTR Val);
+        
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *SetSecure )( 
             IImap * This,
             /* [defaultvalue][in] */ LONG Port);
@@ -2689,6 +3572,20 @@ EXTERN_C const IID IID_IImap;
             /* [in] */ LONG Second,
             /* [in] */ LONG OffsetMinute,
             /* [retval][out] */ BSTR *DateString);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Idle )( 
+            IImap * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *IdleDone )( 
+            IImap * This);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_IdleResetTimeMin )( 
+            IImap * This,
+            /* [retval][out] */ LONG *Val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_IdleResetTimeMin )( 
+            IImap * This,
+            /* [in] */ LONG Val);
         
         END_INTERFACE
     } IImapVtbl;
@@ -2870,6 +3767,12 @@ EXTERN_C const IID IID_IImap;
 #define IImap_get_UidNext(This,UidNext)	\
     ( (This)->lpVtbl -> get_UidNext(This,UidNext) ) 
 
+#define IImap_get_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> get_BearerToken(This,Val) ) 
+
+#define IImap_put_BearerToken(This,Val)	\
+    ( (This)->lpVtbl -> put_BearerToken(This,Val) ) 
+
 #define IImap_SetSecure(This,Port)	\
     ( (This)->lpVtbl -> SetSecure(This,Port) ) 
 
@@ -2978,6 +3881,18 @@ EXTERN_C const IID IID_IImap;
 #define IImap_FormatTime(This,Hour,Minute,Second,OffsetMinute,DateString)	\
     ( (This)->lpVtbl -> FormatTime(This,Hour,Minute,Second,OffsetMinute,DateString) ) 
 
+#define IImap_Idle(This)	\
+    ( (This)->lpVtbl -> Idle(This) ) 
+
+#define IImap_IdleDone(This)	\
+    ( (This)->lpVtbl -> IdleDone(This) ) 
+
+#define IImap_get_IdleResetTimeMin(This,Val)	\
+    ( (This)->lpVtbl -> get_IdleResetTimeMin(This,Val) ) 
+
+#define IImap_put_IdleResetTimeMin(This,Val)	\
+    ( (This)->lpVtbl -> put_IdleResetTimeMin(This,Val) ) 
+
 #endif /* COBJMACROS */
 
 
@@ -3082,6 +3997,9 @@ EXTERN_C const IID IID_IConstants;
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_SMTP_AUTH_MD5CRAM( 
             /* [retval][out] */ LONG *pVal) = 0;
         
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_SMTP_AUTH_OAUTH2( 
+            /* [retval][out] */ LONG *pVal) = 0;
+        
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_POP3_AUTH_PLAIN( 
             /* [retval][out] */ LONG *pVal) = 0;
         
@@ -3089,6 +4007,9 @@ EXTERN_C const IID IID_IConstants;
             /* [retval][out] */ LONG *pVal) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_POP3_AUTH_AUTO( 
+            /* [retval][out] */ LONG *pVal) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_POP3_AUTH_OAUTH2( 
             /* [retval][out] */ LONG *pVal) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_IMAP_SK_ALL( 
@@ -3349,6 +4270,18 @@ EXTERN_C const IID IID_IConstants;
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_IMAP_AUTH_PLAIN( 
             /* [retval][out] */ LONG *pVal) = 0;
         
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_IMAP_AUTH_OAUTH2( 
+            /* [retval][out] */ LONG *pVal) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_OAUTH2_FLOW_UNDEFINED( 
+            /* [retval][out] */ LONG *pVal) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_OAUTH2_FLOW_AUTHCODE( 
+            /* [retval][out] */ LONG *pVal) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_OAUTH2_FLOW_DEVICECODE( 
+            /* [retval][out] */ LONG *pVal) = 0;
+        
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_IPVERSION_4( 
             /* [retval][out] */ LONG *pVal) = 0;
         
@@ -3539,6 +4472,10 @@ EXTERN_C const IID IID_IConstants;
             IConstants * This,
             /* [retval][out] */ LONG *pVal);
         
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_SMTP_AUTH_OAUTH2 )( 
+            IConstants * This,
+            /* [retval][out] */ LONG *pVal);
+        
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_POP3_AUTH_PLAIN )( 
             IConstants * This,
             /* [retval][out] */ LONG *pVal);
@@ -3548,6 +4485,10 @@ EXTERN_C const IID IID_IConstants;
             /* [retval][out] */ LONG *pVal);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_POP3_AUTH_AUTO )( 
+            IConstants * This,
+            /* [retval][out] */ LONG *pVal);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_POP3_AUTH_OAUTH2 )( 
             IConstants * This,
             /* [retval][out] */ LONG *pVal);
         
@@ -3895,6 +4836,22 @@ EXTERN_C const IID IID_IConstants;
             IConstants * This,
             /* [retval][out] */ LONG *pVal);
         
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_IMAP_AUTH_OAUTH2 )( 
+            IConstants * This,
+            /* [retval][out] */ LONG *pVal);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_OAUTH2_FLOW_UNDEFINED )( 
+            IConstants * This,
+            /* [retval][out] */ LONG *pVal);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_OAUTH2_FLOW_AUTHCODE )( 
+            IConstants * This,
+            /* [retval][out] */ LONG *pVal);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_OAUTH2_FLOW_DEVICECODE )( 
+            IConstants * This,
+            /* [retval][out] */ LONG *pVal);
+        
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_IPVERSION_4 )( 
             IConstants * This,
             /* [retval][out] */ LONG *pVal);
@@ -4056,6 +5013,9 @@ EXTERN_C const IID IID_IConstants;
 #define IConstants_get_SMTP_AUTH_MD5CRAM(This,pVal)	\
     ( (This)->lpVtbl -> get_SMTP_AUTH_MD5CRAM(This,pVal) ) 
 
+#define IConstants_get_SMTP_AUTH_OAUTH2(This,pVal)	\
+    ( (This)->lpVtbl -> get_SMTP_AUTH_OAUTH2(This,pVal) ) 
+
 #define IConstants_get_POP3_AUTH_PLAIN(This,pVal)	\
     ( (This)->lpVtbl -> get_POP3_AUTH_PLAIN(This,pVal) ) 
 
@@ -4064,6 +5024,9 @@ EXTERN_C const IID IID_IConstants;
 
 #define IConstants_get_POP3_AUTH_AUTO(This,pVal)	\
     ( (This)->lpVtbl -> get_POP3_AUTH_AUTO(This,pVal) ) 
+
+#define IConstants_get_POP3_AUTH_OAUTH2(This,pVal)	\
+    ( (This)->lpVtbl -> get_POP3_AUTH_OAUTH2(This,pVal) ) 
 
 #define IConstants_get_IMAP_SK_ALL(This,pVal)	\
     ( (This)->lpVtbl -> get_IMAP_SK_ALL(This,pVal) ) 
@@ -4323,6 +5286,18 @@ EXTERN_C const IID IID_IConstants;
 #define IConstants_get_IMAP_AUTH_PLAIN(This,pVal)	\
     ( (This)->lpVtbl -> get_IMAP_AUTH_PLAIN(This,pVal) ) 
 
+#define IConstants_get_IMAP_AUTH_OAUTH2(This,pVal)	\
+    ( (This)->lpVtbl -> get_IMAP_AUTH_OAUTH2(This,pVal) ) 
+
+#define IConstants_get_OAUTH2_FLOW_UNDEFINED(This,pVal)	\
+    ( (This)->lpVtbl -> get_OAUTH2_FLOW_UNDEFINED(This,pVal) ) 
+
+#define IConstants_get_OAUTH2_FLOW_AUTHCODE(This,pVal)	\
+    ( (This)->lpVtbl -> get_OAUTH2_FLOW_AUTHCODE(This,pVal) ) 
+
+#define IConstants_get_OAUTH2_FLOW_DEVICECODE(This,pVal)	\
+    ( (This)->lpVtbl -> get_OAUTH2_FLOW_DEVICECODE(This,pVal) ) 
+
 #define IConstants_get_IPVERSION_4(This,pVal)	\
     ( (This)->lpVtbl -> get_IPVERSION_4(This,pVal) ) 
 
@@ -4358,6 +5333,81 @@ EXTERN_C const IID IID_IConstants;
 
 #endif 	/* C style interface */
 
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IConstants_get_IPVERSION_4_Proxy( 
+    IConstants * This,
+    /* [retval][out] */ LONG *pVal);
+
+
+void __RPC_STUB IConstants_get_IPVERSION_4_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IConstants_get_IPVERSION_6_Proxy( 
+    IConstants * This,
+    /* [retval][out] */ LONG *pVal);
+
+
+void __RPC_STUB IConstants_get_IPVERSION_6_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IConstants_get_IPVERSION_6_4_Proxy( 
+    IConstants * This,
+    /* [retval][out] */ LONG *pVal);
+
+
+void __RPC_STUB IConstants_get_IPVERSION_6_4_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IConstants_MessagePriorityToString_Proxy( 
+    IConstants * This,
+    /* [in] */ LONG lVal,
+    /* [retval][out] */ BSTR *strVal);
+
+
+void __RPC_STUB IConstants_MessagePriorityToString_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IConstants_MessageEncodingToString_Proxy( 
+    IConstants * This,
+    /* [in] */ LONG lVal,
+    /* [retval][out] */ BSTR *strVal);
+
+
+void __RPC_STUB IConstants_MessageEncodingToString_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IConstants_SmtpAuthToString_Proxy( 
+    IConstants * This,
+    /* [in] */ LONG lVal,
+    /* [retval][out] */ BSTR *strVal);
+
+
+void __RPC_STUB IConstants_SmtpAuthToString_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
 
 
 /* [id] */ HRESULT STDMETHODCALLTYPE IConstants_Pop3AuthToString_Proxy( 
@@ -4432,6 +5482,14 @@ EXTERN_C const CLSID CLSID_Message;
 
 class DECLSPEC_UUID("1A9CF5C5-C6E4-48B1-910A-74437BA16414")
 Message;
+#endif
+
+EXTERN_C const CLSID CLSID_OAuth2;
+
+#ifdef __cplusplus
+
+class DECLSPEC_UUID("FD456C7C-370E-4C9D-8EF5-750A13AAC1ED")
+OAuth2;
 #endif
 
 EXTERN_C const CLSID CLSID_Smtp;

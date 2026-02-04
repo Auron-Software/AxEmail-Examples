@@ -22,6 +22,7 @@ Partial Class frmShowDeviceCode
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmShowDeviceCode))
         Me.label1 = New System.Windows.Forms.Label()
         Me.lblUserCode = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
@@ -64,6 +65,7 @@ Partial Class frmShowDeviceCode
         Me.Controls.Add(Me.label1)
         Me.Controls.Add(Me.lblUserCode)
         Me.Controls.Add(Me.btnClose)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmShowDeviceCode"
         Me.Text = "frmShowDeviceCode"
         Me.ResumeLayout(False)
