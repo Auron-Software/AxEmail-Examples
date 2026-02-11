@@ -12,14 +12,14 @@ unit AxEmail_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 11/13/2018 2:08:12 PM from Type Library described below.
+// File generated on 2/11/2026 7:08:43 AM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: G:\AxEmail\VisualC\AxEmail\Release32\AxEmail32.dll (1)
 // LIBID: {3BCF1B58-7071-4564-9D1D-FA008B19179A}
 // LCID: 0
 // Helpfile: 
-// HelpString: ActiveXperts E-mail Component 5.0 Type Library
+// HelpString: Auron E-mail Component 6.4 Type Library
 // DepndLst: 
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // Errors:
@@ -55,6 +55,8 @@ const
 
   IID_IMessage: TGUID = '{CC87528F-D4BF-4BFE-8DF7-9BFB57D33810}';
   CLASS_Message: TGUID = '{1A9CF5C5-C6E4-48B1-910A-74437BA16414}';
+  IID_IOAuth2: TGUID = '{FFB7E17F-EF95-437E-BB93-EF506948AD18}';
+  CLASS_OAuth2: TGUID = '{FD456C7C-370E-4C9D-8EF5-750A13AAC1ED}';
   IID_ISmtp: TGUID = '{FE73AE95-A7C6-4E98-8AF2-CAB94AAE743A}';
   CLASS_Smtp: TGUID = '{CA181116-E4BA-4F09-9176-328CDF8409D5}';
   IID_IPop3: TGUID = '{7D24A1B3-4808-4208-9A9F-2A281256744A}';
@@ -72,6 +74,8 @@ type
 // *********************************************************************//
   IMessage = interface;
   IMessageDisp = dispinterface;
+  IOAuth2 = interface;
+  IOAuth2Disp = dispinterface;
   ISmtp = interface;
   ISmtpDisp = dispinterface;
   IPop3 = interface;
@@ -88,6 +92,7 @@ type
 // (NOTE: Here we map each CoClass to its Default Interface)              
 // *********************************************************************//
   Message = IMessage;
+  OAuth2 = IOAuth2;
   Smtp = ISmtp;
   Pop3 = IPop3;
   ImapFetchData = IImapFetchData;
@@ -109,6 +114,10 @@ type
   IMessage = interface(IDispatch)
     ['{CC87528F-D4BF-4BFE-8DF7-9BFB57D33810}']
     function Get_LastError: Integer; safecall;
+    function Get_UnsubscribeEmail: WideString; safecall;
+    procedure Set_UnsubscribeEmail(const Val: WideString); safecall;
+    function Get_UnsubscribeUrl: WideString; safecall;
+    procedure Set_UnsubscribeUrl(const Val: WideString); safecall;
     function Get_FromName: WideString; safecall;
     procedure Set_FromName(const Name: WideString); safecall;
     function Get_FromAddress: WideString; safecall;
@@ -149,7 +158,8 @@ type
     function CountAttachments: Integer; safecall;
     function GetAttachmentName(ID: Integer): WideString; safecall;
     function GetAttachmentSize(ID: Integer): Integer; safecall;
-    procedure AddAttachment(const FileName: WideString); safecall;
+    procedure AddAttachment(const FileName: WideString; const AttachmentName: WideString; 
+                            InlineDisposition: WordBool); safecall;
     procedure SaveAttachment(ID: Integer; const SaveAsFile: WideString); safecall;
     function ImapHasFlag(const Flag: WideString): WordBool; safecall;
     procedure LoadMIME(const MimeFile: WideString); safecall;
@@ -157,8 +167,11 @@ type
     procedure Encode; safecall;
     procedure Decode; safecall;
     function GetHeaderValue(const Name: WideString): WideString; safecall;
-    procedure AddHeader(const Name: WideString; const Value: WideString); safecall;
+    procedure AddHeader(const Name: WideString; const Value: WideString; Enquote: WordBool); safecall;
+    function HtmlToPlainText(const Html: WideString): WideString; safecall;
     property LastError: Integer read Get_LastError;
+    property UnsubscribeEmail: WideString read Get_UnsubscribeEmail write Set_UnsubscribeEmail;
+    property UnsubscribeUrl: WideString read Get_UnsubscribeUrl write Set_UnsubscribeUrl;
     property FromName: WideString read Get_FromName write Set_FromName;
     property FromAddress: WideString read Get_FromAddress write Set_FromAddress;
     property ReplyAddress: WideString read Get_ReplyAddress write Set_ReplyAddress;
@@ -190,6 +203,8 @@ type
   IMessageDisp = dispinterface
     ['{CC87528F-D4BF-4BFE-8DF7-9BFB57D33810}']
     property LastError: Integer readonly dispid 1;
+    property UnsubscribeEmail: WideString dispid 40;
+    property UnsubscribeUrl: WideString dispid 41;
     property FromName: WideString dispid 50;
     property FromAddress: WideString dispid 51;
     property ReplyAddress: WideString dispid 52;
@@ -219,7 +234,8 @@ type
     function CountAttachments: Integer; dispid 300;
     function GetAttachmentName(ID: Integer): WideString; dispid 301;
     function GetAttachmentSize(ID: Integer): Integer; dispid 302;
-    procedure AddAttachment(const FileName: WideString); dispid 303;
+    procedure AddAttachment(const FileName: WideString; const AttachmentName: WideString; 
+                            InlineDisposition: WordBool); dispid 303;
     procedure SaveAttachment(ID: Integer; const SaveAsFile: WideString); dispid 304;
     function ImapHasFlag(const Flag: WideString): WordBool; dispid 305;
     procedure LoadMIME(const MimeFile: WideString); dispid 310;
@@ -227,7 +243,168 @@ type
     procedure Encode; dispid 320;
     procedure Decode; dispid 321;
     function GetHeaderValue(const Name: WideString): WideString; dispid 330;
-    procedure AddHeader(const Name: WideString; const Value: WideString); dispid 331;
+    procedure AddHeader(const Name: WideString; const Value: WideString; Enquote: WordBool); dispid 331;
+    function HtmlToPlainText(const Html: WideString): WideString; dispid 340;
+  end;
+
+// *********************************************************************//
+// Interface: IOAuth2
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {FFB7E17F-EF95-437E-BB93-EF506948AD18}
+// *********************************************************************//
+  IOAuth2 = interface(IDispatch)
+    ['{FFB7E17F-EF95-437E-BB93-EF506948AD18}']
+    function Get_Version: WideString; safecall;
+    function Get_Build: WideString; safecall;
+    function Get_Module: WideString; safecall;
+    function Get_LicenseStatus: WideString; safecall;
+    function Get_LicenseKey: WideString; safecall;
+    procedure Set_LicenseKey(const LicenseKey: WideString); safecall;
+    procedure SaveLicenseKey; safecall;
+    function Get_LogFile: WideString; safecall;
+    procedure Set_LogFile(const LogFile: WideString); safecall;
+    function Get_ActivityFile: WideString; safecall;
+    procedure Set_ActivityFile(const ActivityFile: WideString); safecall;
+    procedure Sleep(Ms: Integer); safecall;
+    procedure Clear; safecall;
+    function Get_LastError: Integer; safecall;
+    function GetErrorDescription(ErrorCode: Integer): WideString; safecall;
+    function Get_Flow: Integer; safecall;
+    function Get_AuthCodeUrl: WideString; safecall;
+    function Get_DeviceCodeUrl: WideString; safecall;
+    function Get_TokenExchangeUrl: WideString; safecall;
+    function Get_RedirectUrl: WideString; safecall;
+    function Get_VerificationUrl: WideString; safecall;
+    function Get_ClientID: WideString; safecall;
+    function Get_ClientSecret: WideString; safecall;
+    function Get_Scope: WideString; safecall;
+    function Get_SuccessHtml: WideString; safecall;
+    function Get_ErrorHtml: WideString; safecall;
+    procedure Set_Flow(Val: Integer); safecall;
+    procedure Set_AuthCodeUrl(const Val: WideString); safecall;
+    procedure Set_DeviceCodeUrl(const Val: WideString); safecall;
+    procedure Set_TokenExchangeUrl(const Val: WideString); safecall;
+    procedure Set_RedirectUrl(const Val: WideString); safecall;
+    procedure Set_VerificationUrl(const Val: WideString); safecall;
+    procedure Set_ClientID(const Val: WideString); safecall;
+    procedure Set_ClientSecret(const Val: WideString); safecall;
+    procedure Set_Scope(const Val: WideString); safecall;
+    procedure Set_SuccessHtml(const Val: WideString); safecall;
+    procedure Set_ErrorHtml(const Val: WideString); safecall;
+    function Get_AutoOpenBrowser: WordBool; safecall;
+    function Get_LoginUrl: WideString; safecall;
+    function Get_DeviceCode: WideString; safecall;
+    function Get_UserCode: WideString; safecall;
+    function Get_UserCodeMessage: WideString; safecall;
+    function Get_BearerToken: WideString; safecall;
+    function Get_RefreshToken: WideString; safecall;
+    function Get_BearerExpInSeconds: Integer; safecall;
+    function Get_UserCodeExpInSeconds: Integer; safecall;
+    function Get_PollIntervalInSeconds: Integer; safecall;
+    function Get_LastResponse: WideString; safecall;
+    function Get_ResultScope: WideString; safecall;
+    function Get_ResultError: WideString; safecall;
+    function Get_ResultErrorDescription: WideString; safecall;
+    procedure Set_AutoOpenBrowser(Val: WordBool); safecall;
+    procedure Set_BearerToken(const Val: WideString); safecall;
+    procedure Set_RefreshToken(const Val: WideString); safecall;
+    function Get_ProxyServer: WideString; safecall;
+    function Get_ProxyAccount: WideString; safecall;
+    function Get_ProxyPassword: WideString; safecall;
+    procedure Set_ProxyServer(const Val: WideString); safecall;
+    procedure Set_ProxyAccount(const Val: WideString); safecall;
+    procedure Set_ProxyPassword(const Val: WideString); safecall;
+    procedure Login; safecall;
+    procedure WaitForTokens(nTimeoutMs: Integer); safecall;
+    procedure RefreshBearerToken; safecall;
+    property Version: WideString read Get_Version;
+    property Build: WideString read Get_Build;
+    property Module: WideString read Get_Module;
+    property LicenseStatus: WideString read Get_LicenseStatus;
+    property LicenseKey: WideString read Get_LicenseKey write Set_LicenseKey;
+    property LogFile: WideString read Get_LogFile write Set_LogFile;
+    property ActivityFile: WideString read Get_ActivityFile write Set_ActivityFile;
+    property LastError: Integer read Get_LastError;
+    property Flow: Integer read Get_Flow write Set_Flow;
+    property AuthCodeUrl: WideString read Get_AuthCodeUrl write Set_AuthCodeUrl;
+    property DeviceCodeUrl: WideString read Get_DeviceCodeUrl write Set_DeviceCodeUrl;
+    property TokenExchangeUrl: WideString read Get_TokenExchangeUrl write Set_TokenExchangeUrl;
+    property RedirectUrl: WideString read Get_RedirectUrl write Set_RedirectUrl;
+    property VerificationUrl: WideString read Get_VerificationUrl write Set_VerificationUrl;
+    property ClientID: WideString read Get_ClientID write Set_ClientID;
+    property ClientSecret: WideString read Get_ClientSecret write Set_ClientSecret;
+    property Scope: WideString read Get_Scope write Set_Scope;
+    property SuccessHtml: WideString read Get_SuccessHtml write Set_SuccessHtml;
+    property ErrorHtml: WideString read Get_ErrorHtml write Set_ErrorHtml;
+    property AutoOpenBrowser: WordBool read Get_AutoOpenBrowser write Set_AutoOpenBrowser;
+    property LoginUrl: WideString read Get_LoginUrl;
+    property DeviceCode: WideString read Get_DeviceCode;
+    property UserCode: WideString read Get_UserCode;
+    property UserCodeMessage: WideString read Get_UserCodeMessage;
+    property BearerToken: WideString read Get_BearerToken write Set_BearerToken;
+    property RefreshToken: WideString read Get_RefreshToken write Set_RefreshToken;
+    property BearerExpInSeconds: Integer read Get_BearerExpInSeconds;
+    property UserCodeExpInSeconds: Integer read Get_UserCodeExpInSeconds;
+    property PollIntervalInSeconds: Integer read Get_PollIntervalInSeconds;
+    property LastResponse: WideString read Get_LastResponse;
+    property ResultScope: WideString read Get_ResultScope;
+    property ResultError: WideString read Get_ResultError;
+    property ResultErrorDescription: WideString read Get_ResultErrorDescription;
+    property ProxyServer: WideString read Get_ProxyServer write Set_ProxyServer;
+    property ProxyAccount: WideString read Get_ProxyAccount write Set_ProxyAccount;
+    property ProxyPassword: WideString read Get_ProxyPassword write Set_ProxyPassword;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IOAuth2Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {FFB7E17F-EF95-437E-BB93-EF506948AD18}
+// *********************************************************************//
+  IOAuth2Disp = dispinterface
+    ['{FFB7E17F-EF95-437E-BB93-EF506948AD18}']
+    property Version: WideString readonly dispid 1;
+    property Build: WideString readonly dispid 2;
+    property Module: WideString readonly dispid 3;
+    property LicenseStatus: WideString readonly dispid 100;
+    property LicenseKey: WideString dispid 101;
+    procedure SaveLicenseKey; dispid 102;
+    property LogFile: WideString dispid 201;
+    property ActivityFile: WideString dispid 202;
+    procedure Sleep(Ms: Integer); dispid 300;
+    procedure Clear; dispid 301;
+    property LastError: Integer readonly dispid 400;
+    function GetErrorDescription(ErrorCode: Integer): WideString; dispid 401;
+    property Flow: Integer dispid 500;
+    property AuthCodeUrl: WideString dispid 510;
+    property DeviceCodeUrl: WideString dispid 520;
+    property TokenExchangeUrl: WideString dispid 530;
+    property RedirectUrl: WideString dispid 540;
+    property VerificationUrl: WideString dispid 550;
+    property ClientID: WideString dispid 560;
+    property ClientSecret: WideString dispid 570;
+    property Scope: WideString dispid 580;
+    property SuccessHtml: WideString dispid 590;
+    property ErrorHtml: WideString dispid 600;
+    property AutoOpenBrowser: WordBool dispid 810;
+    property LoginUrl: WideString readonly dispid 820;
+    property DeviceCode: WideString readonly dispid 830;
+    property UserCode: WideString readonly dispid 840;
+    property UserCodeMessage: WideString readonly dispid 850;
+    property BearerToken: WideString dispid 860;
+    property RefreshToken: WideString dispid 870;
+    property BearerExpInSeconds: Integer readonly dispid 880;
+    property UserCodeExpInSeconds: Integer readonly dispid 890;
+    property PollIntervalInSeconds: Integer readonly dispid 900;
+    property LastResponse: WideString readonly dispid 910;
+    property ResultScope: WideString readonly dispid 920;
+    property ResultError: WideString readonly dispid 930;
+    property ResultErrorDescription: WideString readonly dispid 940;
+    property ProxyServer: WideString dispid 1003;
+    property ProxyAccount: WideString dispid 1004;
+    property ProxyPassword: WideString dispid 1005;
+    procedure Login; dispid 1000;
+    procedure WaitForTokens(nTimeoutMs: Integer); dispid 1010;
+    procedure RefreshBearerToken; dispid 1020;
   end;
 
 // *********************************************************************//
@@ -268,6 +445,8 @@ type
     procedure Set_UseStartTls(UseStartTls: WordBool); safecall;
     function Get_IpVersion: Integer; safecall;
     procedure Set_IpVersion(IpVersion: Integer); safecall;
+    function Get_BearerToken: WideString; safecall;
+    procedure Set_BearerToken(const Val: WideString); safecall;
     function Get_LastSmtpResponse: WideString; safecall;
     procedure SetSecure(Port: Integer); safecall;
     procedure Connect(const Host: WideString; const Account: WideString; const Password: WideString); safecall;
@@ -289,6 +468,7 @@ type
     property Authentication: Integer read Get_Authentication write Set_Authentication;
     property UseStartTls: WordBool read Get_UseStartTls write Set_UseStartTls;
     property IpVersion: Integer read Get_IpVersion write Set_IpVersion;
+    property BearerToken: WideString read Get_BearerToken write Set_BearerToken;
     property LastSmtpResponse: WideString read Get_LastSmtpResponse;
   end;
 
@@ -319,6 +499,7 @@ type
     property Authentication: Integer dispid 610;
     property UseStartTls: WordBool dispid 620;
     property IpVersion: Integer dispid 640;
+    property BearerToken: WideString dispid 650;
     property LastSmtpResponse: WideString readonly dispid 700;
     procedure SetSecure(Port: Integer); dispid 800;
     procedure Connect(const Host: WideString; const Account: WideString; const Password: WideString); dispid 810;
@@ -363,6 +544,8 @@ type
     function Get_IpVersion: Integer; safecall;
     procedure Set_IpVersion(IpVersion: Integer); safecall;
     function Get_LastPop3Response: WideString; safecall;
+    function Get_BearerToken: WideString; safecall;
+    procedure Set_BearerToken(const Val: WideString); safecall;
     procedure SetSecure(Port: Integer); safecall;
     procedure Connect(const Host: WideString; const Account: WideString; const Password: WideString); safecall;
     procedure Disconnect; safecall;
@@ -387,6 +570,7 @@ type
     property Authentication: Integer read Get_Authentication write Set_Authentication;
     property IpVersion: Integer read Get_IpVersion write Set_IpVersion;
     property LastPop3Response: WideString read Get_LastPop3Response;
+    property BearerToken: WideString read Get_BearerToken write Set_BearerToken;
   end;
 
 // *********************************************************************//
@@ -416,6 +600,7 @@ type
     property Authentication: Integer dispid 610;
     property IpVersion: Integer dispid 640;
     property LastPop3Response: WideString readonly dispid 700;
+    property BearerToken: WideString dispid 780;
     procedure SetSecure(Port: Integer); dispid 800;
     procedure Connect(const Host: WideString; const Account: WideString; const Password: WideString); dispid 810;
     procedure Disconnect; dispid 820;
@@ -445,12 +630,14 @@ type
     function ContainsIntValue(Val: Integer): WordBool; safecall;
     function Get_LastError: Integer; safecall;
     function GetErrorDescription(ErrorCode: Integer): WideString; safecall;
+    function Get_Sequence: Integer; safecall;
     property IsTopLevel: WordBool read Get_IsTopLevel;
     property Type_: Integer read Get_Type_;
     property Value: WideString read Get_Value;
     property ValueAsInt: Integer read Get_ValueAsInt;
     property Text: WideString read Get_Text;
     property LastError: Integer read Get_LastError;
+    property Sequence: Integer read Get_Sequence;
   end;
 
 // *********************************************************************//
@@ -472,6 +659,7 @@ type
     function ContainsIntValue(Val: Integer): WordBool; dispid 150;
     property LastError: Integer readonly dispid 400;
     function GetErrorDescription(ErrorCode: Integer): WideString; dispid 401;
+    property Sequence: Integer readonly dispid 410;
   end;
 
 // *********************************************************************//
@@ -529,6 +717,8 @@ type
     function Get_Recent: Integer; safecall;
     function Get_Unseen: Integer; safecall;
     function Get_UidNext: Integer; safecall;
+    function Get_BearerToken: WideString; safecall;
+    procedure Set_BearerToken(const Val: WideString); safecall;
     procedure SetSecure(Port: Integer); safecall;
     procedure Connect(const Host: WideString; const Account: WideString; const Password: WideString); safecall;
     procedure Disconnect; safecall;
@@ -566,6 +756,10 @@ type
     function HasCapability(const Capability: WideString): WordBool; safecall;
     function FormatDate(Year: Integer; Month: Integer; Day: Integer): WideString; safecall;
     function FormatTime(Hour: Integer; Minute: Integer; Second: Integer; OffsetMinute: Integer): WideString; safecall;
+    procedure Idle; safecall;
+    procedure IdleDone; safecall;
+    function Get_IdleResetTimeMin: Integer; safecall;
+    procedure Set_IdleResetTimeMin(Val: Integer); safecall;
     property Version: WideString read Get_Version;
     property Build: WideString read Get_Build;
     property Module: WideString read Get_Module;
@@ -594,6 +788,8 @@ type
     property Recent: Integer read Get_Recent;
     property Unseen: Integer read Get_Unseen;
     property UidNext: Integer read Get_UidNext;
+    property BearerToken: WideString read Get_BearerToken write Set_BearerToken;
+    property IdleResetTimeMin: Integer read Get_IdleResetTimeMin write Set_IdleResetTimeMin;
   end;
 
 // *********************************************************************//
@@ -635,6 +831,7 @@ type
     property Recent: Integer readonly dispid 740;
     property Unseen: Integer readonly dispid 750;
     property UidNext: Integer readonly dispid 760;
+    property BearerToken: WideString dispid 790;
     procedure SetSecure(Port: Integer); dispid 800;
     procedure Connect(const Host: WideString; const Account: WideString; const Password: WideString); dispid 810;
     procedure Disconnect; dispid 820;
@@ -672,6 +869,9 @@ type
     function HasCapability(const Capability: WideString): WordBool; dispid 1510;
     function FormatDate(Year: Integer; Month: Integer; Day: Integer): WideString; dispid 1520;
     function FormatTime(Hour: Integer; Minute: Integer; Second: Integer; OffsetMinute: Integer): WideString; dispid 1530;
+    procedure Idle; dispid 1600;
+    procedure IdleDone; dispid 1610;
+    property IdleResetTimeMin: Integer dispid 1620;
   end;
 
 // *********************************************************************//
@@ -707,9 +907,11 @@ type
     function Get_SMTP_AUTH_PLAIN: Integer; safecall;
     function Get_SMTP_AUTH_LOGIN: Integer; safecall;
     function Get_SMTP_AUTH_MD5CRAM: Integer; safecall;
+    function Get_SMTP_AUTH_OAUTH2: Integer; safecall;
     function Get_POP3_AUTH_PLAIN: Integer; safecall;
     function Get_POP3_AUTH_APOP: Integer; safecall;
     function Get_POP3_AUTH_AUTO: Integer; safecall;
+    function Get_POP3_AUTH_OAUTH2: Integer; safecall;
     function Get_IMAP_SK_ALL: WideString; safecall;
     function Get_IMAP_SK_ANSWERED: WideString; safecall;
     function Get_IMAP_SK_BCC: WideString; safecall;
@@ -796,6 +998,10 @@ type
     function Get_IMAP_AUTH_AUTO: Integer; safecall;
     function Get_IMAP_AUTH_LOGIN: Integer; safecall;
     function Get_IMAP_AUTH_PLAIN: Integer; safecall;
+    function Get_IMAP_AUTH_OAUTH2: Integer; safecall;
+    function Get_OAUTH2_FLOW_UNDEFINED: Integer; safecall;
+    function Get_OAUTH2_FLOW_AUTHCODE: Integer; safecall;
+    function Get_OAUTH2_FLOW_DEVICECODE: Integer; safecall;
     function Get_IPVERSION_4: Integer; safecall;
     function Get_IPVERSION_6: Integer; safecall;
     function Get_IPVERSION_6_4: Integer; safecall;
@@ -832,9 +1038,11 @@ type
     property SMTP_AUTH_PLAIN: Integer read Get_SMTP_AUTH_PLAIN;
     property SMTP_AUTH_LOGIN: Integer read Get_SMTP_AUTH_LOGIN;
     property SMTP_AUTH_MD5CRAM: Integer read Get_SMTP_AUTH_MD5CRAM;
+    property SMTP_AUTH_OAUTH2: Integer read Get_SMTP_AUTH_OAUTH2;
     property POP3_AUTH_PLAIN: Integer read Get_POP3_AUTH_PLAIN;
     property POP3_AUTH_APOP: Integer read Get_POP3_AUTH_APOP;
     property POP3_AUTH_AUTO: Integer read Get_POP3_AUTH_AUTO;
+    property POP3_AUTH_OAUTH2: Integer read Get_POP3_AUTH_OAUTH2;
     property IMAP_SK_ALL: WideString read Get_IMAP_SK_ALL;
     property IMAP_SK_ANSWERED: WideString read Get_IMAP_SK_ANSWERED;
     property IMAP_SK_BCC: WideString read Get_IMAP_SK_BCC;
@@ -921,6 +1129,10 @@ type
     property IMAP_AUTH_AUTO: Integer read Get_IMAP_AUTH_AUTO;
     property IMAP_AUTH_LOGIN: Integer read Get_IMAP_AUTH_LOGIN;
     property IMAP_AUTH_PLAIN: Integer read Get_IMAP_AUTH_PLAIN;
+    property IMAP_AUTH_OAUTH2: Integer read Get_IMAP_AUTH_OAUTH2;
+    property OAUTH2_FLOW_UNDEFINED: Integer read Get_OAUTH2_FLOW_UNDEFINED;
+    property OAUTH2_FLOW_AUTHCODE: Integer read Get_OAUTH2_FLOW_AUTHCODE;
+    property OAUTH2_FLOW_DEVICECODE: Integer read Get_OAUTH2_FLOW_DEVICECODE;
     property IPVERSION_4: Integer read Get_IPVERSION_4;
     property IPVERSION_6: Integer read Get_IPVERSION_6;
     property IPVERSION_6_4: Integer read Get_IPVERSION_6_4;
@@ -959,9 +1171,11 @@ type
     property SMTP_AUTH_PLAIN: Integer readonly dispid 301;
     property SMTP_AUTH_LOGIN: Integer readonly dispid 302;
     property SMTP_AUTH_MD5CRAM: Integer readonly dispid 303;
+    property SMTP_AUTH_OAUTH2: Integer readonly dispid 304;
     property POP3_AUTH_PLAIN: Integer readonly dispid 400;
     property POP3_AUTH_APOP: Integer readonly dispid 401;
     property POP3_AUTH_AUTO: Integer readonly dispid 402;
+    property POP3_AUTH_OAUTH2: Integer readonly dispid 403;
     property IMAP_SK_ALL: WideString readonly dispid 500;
     property IMAP_SK_ANSWERED: WideString readonly dispid 501;
     property IMAP_SK_BCC: WideString readonly dispid 502;
@@ -1048,6 +1262,10 @@ type
     property IMAP_AUTH_AUTO: Integer readonly dispid 583;
     property IMAP_AUTH_LOGIN: Integer readonly dispid 584;
     property IMAP_AUTH_PLAIN: Integer readonly dispid 585;
+    property IMAP_AUTH_OAUTH2: Integer readonly dispid 586;
+    property OAUTH2_FLOW_UNDEFINED: Integer readonly dispid 600;
+    property OAUTH2_FLOW_AUTHCODE: Integer readonly dispid 601;
+    property OAUTH2_FLOW_DEVICECODE: Integer readonly dispid 602;
     property IPVERSION_4: Integer readonly dispid 700;
     property IPVERSION_6: Integer readonly dispid 701;
     property IPVERSION_6_4: Integer readonly dispid 702;
@@ -1070,6 +1288,18 @@ type
   CoMessage = class
     class function Create: IMessage;
     class function CreateRemote(const MachineName: string): IMessage;
+  end;
+
+// *********************************************************************//
+// The Class CoOAuth2 provides a Create and CreateRemote method to          
+// create instances of the default interface IOAuth2 exposed by              
+// the CoClass OAuth2. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  CoOAuth2 = class
+    class function Create: IOAuth2;
+    class function CreateRemote(const MachineName: string): IOAuth2;
   end;
 
 // *********************************************************************//
@@ -1144,6 +1374,16 @@ end;
 class function CoMessage.CreateRemote(const MachineName: string): IMessage;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_Message) as IMessage;
+end;
+
+class function CoOAuth2.Create: IOAuth2;
+begin
+  Result := CreateComObject(CLASS_OAuth2) as IOAuth2;
+end;
+
+class function CoOAuth2.CreateRemote(const MachineName: string): IOAuth2;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_OAuth2) as IOAuth2;
 end;
 
 class function CoSmtp.Create: ISmtp;

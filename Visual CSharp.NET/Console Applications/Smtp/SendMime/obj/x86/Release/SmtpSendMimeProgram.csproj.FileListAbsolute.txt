@@ -1,9 +1,0 @@
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\bin\Release\x86\SmtpSendMimeProgram.exe.config
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\bin\Release\x86\SmtpSendMimeProgram.exe
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\bin\Release\x86\SmtpSendMimeProgram.pdb
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\bin\Release\x86\Interop.AxEmail.dll
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\obj\x86\Release\Interop.AxEmail.dll
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\obj\x86\Release\SmtpSendMimeProgram.csproj.ResolveComReference.cache
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\obj\x86\Release\SmtpSendMimeProgram.csproj.CoreCompileInputs.cache
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\obj\x86\Release\SmtpSendMimeProgram.exe
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\SendMime\obj\x86\Release\SmtpSendMimeProgram.pdb

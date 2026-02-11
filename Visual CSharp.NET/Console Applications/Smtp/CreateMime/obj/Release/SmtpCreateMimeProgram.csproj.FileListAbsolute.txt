@@ -1,9 +1,0 @@
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\bin\Release\Any CPU\SmtpCreateMimeProgram.exe.config
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\bin\Release\Any CPU\SmtpCreateMimeProgram.exe
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\bin\Release\Any CPU\SmtpCreateMimeProgram.pdb
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\bin\Release\Any CPU\Interop.AxEmail.dll
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\obj\Release\Interop.AxEmail.dll
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\obj\Release\SmtpCreateMimeProgram.csproj.ResolveComReference.cache
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\obj\Release\SmtpCreateMimeProgram.csproj.CoreCompileInputs.cache
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\obj\Release\SmtpCreateMimeProgram.exe
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Smtp\CreateMime\obj\Release\SmtpCreateMimeProgram.pdb

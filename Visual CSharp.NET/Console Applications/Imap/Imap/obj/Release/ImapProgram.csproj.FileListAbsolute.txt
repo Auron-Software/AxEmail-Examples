@@ -1,9 +1,0 @@
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\bin\Release\Imap.exe.config
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\bin\Release\Imap.exe
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\bin\Release\Imap.pdb
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\obj\Release\ImapProgram.csprojAssemblyReference.cache
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\obj\Release\Interop.AxEmail.dll
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\obj\Release\ImapProgram.csproj.ResolveComReference.cache
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\obj\Release\ImapProgram.csproj.CoreCompileInputs.cache
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\obj\Release\Imap.exe
-G:\AxEmail\Samples\Visual CSharp.NET\Console Applications\Imap\Imap\obj\Release\Imap.pdb

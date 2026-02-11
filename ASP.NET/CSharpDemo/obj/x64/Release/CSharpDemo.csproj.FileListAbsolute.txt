@@ -1,9 +1,0 @@
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\bin\CSharpDemo.dll
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\bin\CSharpDemo.pdb
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\bin\Interop.AxEmail.dll
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\obj\x64\Release\CSharpDemo.csprojAssemblyReference.cache
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\obj\x64\Release\Interop.AxEmail.dll
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\obj\x64\Release\CSharpDemo.csproj.ResolveComReference.cache
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\obj\x64\Release\CSharpDemo.csproj.CoreCompileInputs.cache
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\obj\x64\Release\CSharpDemo.dll
-G:\AxEmail\Samples\ASP.NET\CSharpDemo\obj\x64\Release\CSharpDemo.pdb
